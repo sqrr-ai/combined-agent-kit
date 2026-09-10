@@ -1,0 +1,6 @@
+{
+  "columns": ["account_name", "currency", "upcoming_terms", "nonrenewing_terms", "overdue_invoices", "overdue_balance"],
+  "rows": [["Atlas", "USD", 2, 0, 1, 500.0], ["Birch", "USD", 1, 1, 0, 0.0]],
+  "synthetic": true,
+  "fixture": "account-renewals-and-billing.sql"
+}

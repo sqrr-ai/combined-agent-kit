@@ -25,6 +25,29 @@ Select the skills and agents you want to use. Connect your Combined workspace th
 | [Read-only SQL](skills/combined-readonly-sql/SKILL.md) | Query granted datasets with bounded joins, aggregates and checkable receipts. |
 | [Revenue analysis](skills/combined-revenue-analysis/SKILL.md) | Define and reconcile billing and CRM metrics, with clear currencies and reporting windows. |
 
+## Explore the interactive join lab
+
+[Change the deals and invoices in your browser](https://www.trycombined.com/resources/crm-billing-join-lab), inspect the matching rows, and download the query for your scenario. Two deals and two invoices produce four raw joined rows; aggregating each source first preserves the correct totals.
+
+The [default lab SQL](examples/crm-billing-join-lab.sql) runs without an account. All 42 selectable scenarios were checked independently in DuckDB 1.5.5. Share a scenario with your team or give the downloaded query to your agent.
+
+## Eight cross-app workflows with expected results
+
+Each example contains synthetic records, a complete SQL calculation and a matching expected-output file. Read the guide for source mapping, metric definitions and the prompt to adapt it to your own data.
+
+| Business question | Tutorial | Runnable example |
+|---|---|---|
+| Which renewals have overdue billing? | [Salesforce + Chargebee](https://www.trycombined.com/resources/account-renewals-and-billing) | [SQL](examples/workflows/account-renewals-and-billing.sql) |
+| Are activated accounts staying paid? | [PostHog + Stripe](https://www.trycombined.com/resources/activation-and-paid-retention) | [SQL](examples/workflows/activation-and-paid-retention.sql) |
+| How does support load compare with booked value? | [Salesforce + Zendesk](https://www.trycombined.com/resources/customer-revenue-and-support-load) | [SQL](examples/workflows/customer-revenue-and-support-load.sql) |
+| Which open deals have active customer conversations? | [HubSpot + Intercom](https://www.trycombined.com/resources/deals-and-support-conversations) | [SQL](examples/workflows/deals-and-support-conversations.sql) |
+| What are pipeline, paid and outstanding amounts? | [Salesforce + Stripe](https://www.trycombined.com/resources/opportunities-and-paid-invoices) | [SQL](examples/workflows/opportunities-and-paid-invoices.sql) |
+| Which subscriptions need renewal opportunities? | [HubSpot + Chargebee](https://www.trycombined.com/resources/renewal-pipeline-and-subscriptions) | [SQL](examples/workflows/renewal-pipeline-and-subscriptions.sql) |
+| Which won customers still owe invoice balances? | [HubSpot + QuickBooks](https://www.trycombined.com/resources/sales-deals-and-unpaid-invoices) | [SQL](examples/workflows/sales-deals-and-unpaid-invoices.sql) |
+| Which upcoming renewals have aging support issues? | [Salesforce + Freshdesk](https://www.trycombined.com/resources/support-backlog-and-renewals) | [SQL](examples/workflows/support-backlog-and-renewals.sql) |
+
+All eight fixtures passed in DuckDB 1.5.5 against independently specified expected results. See the [example instructions and expected JSON files](examples/workflows). These are reproducible teaching examples, ready to adapt after discovering your granted source schemas.
+
 ## Try the SQL example without an account
 
 The [HubSpot–Stripe SQL fixture](examples/hubspot-stripe-pipeline.sql) runs in DuckDB using synthetic records. It demonstrates why joining deals and invoices before aggregating doubles both measures, and how to preserve customers without matching payments.

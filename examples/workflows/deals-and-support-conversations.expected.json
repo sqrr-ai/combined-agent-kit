@@ -1,0 +1,6 @@
+{
+  "columns": ["company_name", "open_deals", "pipeline_amount", "recent_open_conversations"],
+  "rows": [["Atlas", 2, 20000.0, 1], ["Birch", 1, 6000.0, 0]],
+  "synthetic": true,
+  "fixture": "deals-and-support-conversations.sql"
+}

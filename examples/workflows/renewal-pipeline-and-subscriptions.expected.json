@@ -1,0 +1,10 @@
+{
+  "columns": ["subscription_id", "company_name", "term_end", "covering_deals", "next_action"],
+  "rows": [
+    ["s1", "Atlas", "2026-09-15T00:00:00", 1, "ready"],
+    ["s2", "Atlas", "2026-09-25T00:00:00", 0, "needs_renewal_deal"],
+    ["s3", "Birch", "2026-09-20T00:00:00", 0, "cancellation_review"]
+  ],
+  "synthetic": true,
+  "fixture": "renewal-pipeline-and-subscriptions.sql"
+}

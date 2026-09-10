@@ -1,0 +1,6 @@
+{
+  "columns": ["activated_accounts", "paid_at_baseline", "retained_paid_accounts", "paid_retention_percent"],
+  "rows": [[3, 2, 1, 50.0]],
+  "synthetic": true,
+  "fixture": "activation-and-paid-retention.sql"
+}

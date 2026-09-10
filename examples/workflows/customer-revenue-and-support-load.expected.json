@@ -1,0 +1,6 @@
+{
+  "columns": ["account_name", "booked_value", "unresolved_tickets", "high_or_urgent"],
+  "rows": [["Atlas", 20000.0, 2, 1], ["Birch", 15000.0, 0, 0]],
+  "synthetic": true,
+  "fixture": "customer-revenue-and-support-load.sql"
+}

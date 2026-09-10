@@ -1,0 +1,6 @@
+{
+  "columns": ["account_name", "renewal_pipeline", "aged_high_priority", "coverage"],
+  "rows": [["Atlas", 15000.0, 1, "mapped"], ["Birch", 7000.0, 0, "mapped"], ["Dune", 4000.0, null, "mapping_missing"]],
+  "synthetic": true,
+  "fixture": "support-backlog-and-renewals.sql"
+}

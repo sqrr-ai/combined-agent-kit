@@ -1,0 +1,6 @@
+{
+  "columns": ["account_name", "open_pipeline", "paid_in_window", "outstanding", "overdue", "undated"],
+  "rows": [["Atlas", 20000.0, 3000.0, 700.0, 500.0, 200.0], ["Birch", 6000.0, 0.0, 0.0, 0.0, 0.0]],
+  "synthetic": true,
+  "fixture": "opportunities-and-paid-invoices.sql"
+}
