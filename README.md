@@ -33,6 +33,12 @@ The planner connects the published connector library to nine worked examples cov
 
 [Read the default plan](examples/business-data-mcp-plan.md) · [Download the plan as JSON](examples/business-data-mcp-plan.json) · [Explore Combined](https://www.trycombined.com/)
 
+## Compare business-data platforms
+
+[Use the platform evaluation worksheet](examples/business-data-platform-evaluation.md) to compare one business question across connection, data preparation, query access and ongoing ownership. It includes four worked SQL answer contracts, fields for your observed results, and a checklist of operating costs.
+
+Read the evaluations of [Glean](https://www.trycombined.com/resources/combined-vs-glean), [Paragon](https://www.trycombined.com/resources/combined-vs-paragon), [Snowflake MCP](https://www.trycombined.com/resources/combined-vs-snowflake-mcp) and [Databricks MCP](https://www.trycombined.com/resources/combined-vs-databricks-mcp), then use the planner to select the apps for your first Combined connection.
+
 ## Explore the interactive join lab
 
 [Change the deals and invoices in your browser](https://www.trycombined.com/resources/crm-billing-join-lab), inspect the matching rows, and download the query for your scenario. Two deals and two invoices produce four raw joined rows; aggregating each source first preserves the correct totals.
