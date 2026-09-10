@@ -1,0 +1,182 @@
+id: hubspot-stripe-join-fanout
+namespace: company.team
+
+description: |
+  Reproduce a many-to-many join error with synthetic HubSpot deals and Stripe
+  invoices, then verify the correctly aggregated totals with DuckDB. Downloadable
+  JSON, CSV and SQL show the difference. No account, secrets or AI model needed.
+
+tasks:
+  - id: download_fixture
+    type: io.kestra.plugin.core.http.Download
+    description: Download the public synthetic SQL fixture; the next task checks its pinned SHA-256 before execution.
+    uri: https://www.trycombined.com/examples/hubspot-stripe-pipeline.sql
+    timeout: PT1M
+
+  - id: compare_results
+    type: io.kestra.plugin.scripts.python.Script
+    version: "1.9.9"
+    description: Compare the naive join with separately aggregated totals, fail on unexpected results, and save the evidence files.
+    taskRunner:
+      type: io.kestra.plugin.scripts.runner.docker.Docker
+    containerImage: python:3.13.7-slim-bookworm@sha256:adafcc17694d715c905b4c7bebd96907a1fd5cf183395f0ebc4d3428bd22d92d
+    pythonVersion: "3.13.7"
+    packageManager: PIP
+    dependencies:
+      - duckdb==1.5.5
+    inputFiles:
+      fixture.sql: "{{ outputs.download_fixture.uri }}"
+    outputFiles:
+      - comparison.json
+      - comparison.csv
+      - correct-results.json
+      - naive-join.sql
+    timeout: PT5M
+    script: |
+      """Execute the public synthetic fixture and demonstrate join fanout.
+
+      This exact source is embedded in the contribution YAML. It reads fixture.sql
+      from the task working directory and writes only local teaching artifacts.
+      """
+
+      import csv
+      import hashlib
+      import json
+      from decimal import Decimal
+      from pathlib import Path
+
+      import duckdb
+
+      FIXTURE_URL = "https://www.trycombined.com/examples/hubspot-stripe-pipeline.sql"
+      TUTORIAL_URL = "https://www.trycombined.com/resources/query-hubspot-and-stripe-with-ai"
+      FIXTURE_SHA256 = "61b0d70563b266e445feb9e158e4ec75168f4bc6341cc0b051b5a3bd16b90075"
+
+
+      def money(value):
+          return None if value is None else format(Decimal(str(value)), ".2f")
+
+
+      def select_rows(connection, sql):
+          statements = connection.extract_statements(sql)
+          if len(statements) != 1 or statements[0].type != duckdb.StatementType.SELECT:
+              raise ValueError("The fixture and comparison must each contain one SELECT statement.")
+          cursor = connection.execute(sql)
+          columns = [column[0] for column in cursor.description]
+          return [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+
+      def main():
+          if duckdb.__version__ != "1.5.5":
+              raise RuntimeError("This example requires the pinned duckdb==1.5.5 dependency.")
+          fixture_bytes = Path("fixture.sql").read_bytes()
+          actual_sha256 = hashlib.sha256(fixture_bytes).hexdigest()
+          if actual_sha256 != FIXTURE_SHA256:
+              raise ValueError("Fixture checksum mismatch; review the source before updating this blueprint.")
+          fixture_sql = fixture_bytes.decode("utf-8")
+          fixture_ctes, separator, _ = fixture_sql.partition(",\nopen_pipeline AS (")
+          if not separator:
+              raise ValueError("The pinned fixture's CTE boundary was not found.")
+
+          # Use exactly the same synthetic input CTEs and filters for both queries.
+          naive_sql = fixture_ctes + """
+      SELECT c.company_name, d.currency,
+             COUNT(*) AS joined_rows,
+             COUNT(DISTINCT d.deal_id) AS open_deals,
+             SUM(d.amount) AS open_pipeline_amount,
+             COUNT(i.invoice_id) AS paid_invoice_rows,
+             SUM(i.amount_paid_minor) / 100.0 AS paid_invoice_amount
+      FROM deals d
+      JOIN companies c USING (company_id)
+      LEFT JOIN customer_map m USING (company_id)
+      LEFT JOIN invoices i
+        ON i.stripe_customer_id = m.stripe_customer_id
+       AND i.currency = d.currency
+       AND i.status = 'paid'
+       AND i.paid_at >= TIMESTAMP '2026-06-12 00:00:00'
+       AND i.paid_at < TIMESTAMP '2026-09-10 00:00:00'
+      WHERE d.is_closed = false
+      GROUP BY c.company_name, d.currency
+      ORDER BY c.company_name, d.currency;
+      """
+          with duckdb.connect(config={"enable_external_access": False}) as connection:
+              correct = select_rows(connection, fixture_sql)
+              naive = select_rows(connection, naive_sql)
+
+          for row in correct + naive:
+              row["open_pipeline_amount"] = money(row["open_pipeline_amount"])
+              row["paid_invoice_amount"] = money(row["paid_invoice_amount"])
+
+          expected_correct = [
+              {"company_name": "Atlas", "currency": "usd", "open_deals": 2,
+               "open_pipeline_amount": "20000.00", "paid_invoice_count": 2,
+               "paid_invoice_amount": "5000.00"},
+              {"company_name": "Birch", "currency": "usd", "open_deals": 1,
+               "open_pipeline_amount": "6000.00", "paid_invoice_count": None,
+               "paid_invoice_amount": None},
+              {"company_name": "Cedar", "currency": "eur", "open_deals": 1,
+               "open_pipeline_amount": "4000.00", "paid_invoice_count": 1,
+               "paid_invoice_amount": "1500.00"},
+          ]
+          expected_naive = [
+              {"company_name": "Atlas", "currency": "usd", "joined_rows": 4,
+               "open_deals": 2, "open_pipeline_amount": "40000.00",
+               "paid_invoice_rows": 4, "paid_invoice_amount": "10000.00"},
+              {"company_name": "Birch", "currency": "usd", "joined_rows": 1,
+               "open_deals": 1, "open_pipeline_amount": "6000.00",
+               "paid_invoice_rows": 0, "paid_invoice_amount": None},
+              {"company_name": "Cedar", "currency": "eur", "joined_rows": 1,
+               "open_deals": 1, "open_pipeline_amount": "4000.00",
+               "paid_invoice_rows": 1, "paid_invoice_amount": "1500.00"},
+          ]
+          if correct != expected_correct or naive != expected_naive:
+              raise AssertionError("Fixture results differ from the expected, currency-separated rows.")
+
+          comparison = []
+          for correct_row, naive_row in zip(correct, naive):
+              comparison.append({
+                  "company_name": correct_row["company_name"],
+                  "currency": correct_row["currency"],
+                  "naive_joined_rows": naive_row["joined_rows"],
+                  "actual_open_deals": correct_row["open_deals"],
+                  "naive_pipeline_amount": naive_row["open_pipeline_amount"],
+                  "correct_pipeline_amount": correct_row["open_pipeline_amount"],
+                  "naive_paid_invoice_amount": naive_row["paid_invoice_amount"],
+                  "correct_paid_invoice_amount": correct_row["paid_invoice_amount"],
+              })
+
+          report = {
+              "status": "passed",
+              "data_kind": "synthetic normalized teaching fixture",
+              "duckdb_version": duckdb.__version__,
+              "fixture_url": FIXTURE_URL,
+              "fixture_sha256": actual_sha256,
+              "tutorial_url": TUTORIAL_URL,
+              "paid_at_interval_utc": {"inclusive_start": "2026-06-12", "exclusive_end": "2026-09-10"},
+              "correct_results": correct,
+              "naive_results": naive,
+              "comparison": comparison,
+              "checks": {
+                  "fixture_checksum_matches": True,
+                  "queries_are_single_select_statements": True,
+                  "all_expected_correct_rows_match": True,
+                  "all_expected_naive_rows_match": True,
+                  "atlas_naive_totals_are_doubled": True,
+                  "birch_missing_payment_is_preserved_as_null": True,
+                  "usd_and_eur_remain_separate": True,
+              },
+              "interpretation": "Paid invoice amounts are not net-of-refund revenue, MRR or ARR. NULL is a missing match, not proof of zero real-world activity.",
+          }
+          Path("comparison.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+          Path("correct-results.json").write_text(json.dumps(correct, indent=2) + "\n", encoding="utf-8")
+          Path("naive-join.sql").write_text(naive_sql, encoding="utf-8")
+          with Path("comparison.csv").open("w", newline="", encoding="utf-8") as handle:
+              writer = csv.DictWriter(handle, fieldnames=list(comparison[0]))
+              writer.writeheader()
+              writer.writerows(comparison)
+          print("Verified: Atlas's naive join returns USD 40,000 pipeline / 10,000 paid; separately aggregated totals are USD 20,000 / 5,000.")
+          print("Verified: Birch keeps its USD 6,000 pipeline and NULL payment; Cedar stays separate at EUR 4,000 pipeline / 1,500 paid.")
+          print("Files: comparison.json, comparison.csv, correct-results.json, naive-join.sql")
+
+
+      if __name__ == "__main__":
+          main()

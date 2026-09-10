@@ -46,3 +46,9 @@ Browse [hundreds of source-specific guides](https://www.trycombined.com/connecto
 They use Combined's read-only MCP tools to discover sources, inspect schemas, check freshness, retrieve text and run SQL. They do not embed credentials, expand permissions, create customer records or send messages. Account-specific configuration comes from your workspace. The SQL example contains synthetic records only.
 
 [Explore Combined](https://www.trycombined.com/) · [Documentation](https://www.trycombined.com/docs) · [Agent skill downloads](https://www.trycombined.com/agent-skills)
+
+## Workflow example for Kestra
+
+The [HubSpot–Stripe join comparison workflow](workflows/hubspot-stripe-join-fanout.yaml) downloads the synthetic fixture, verifies its checksum, runs the corrected and naive queries, and writes comparison JSON, CSV, correct-result JSON and naive SQL. It needs no account data or LLM subscription.
+
+The target is Kestra 2.0.0 with Python plugin 1.9.9 and a Docker task runner. The Python image and DuckDB 1.5.5 dependency are pinned. The flow passed the official schema and the embedded analysis produced all expected artifacts locally. A full execution on Kestra, including container setup and artifact upload, remains to be checked.
