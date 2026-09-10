@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "referenceDate": "2026-09-10",
+  "question": "Which useful analyses can I run across these business apps?",
+  "selection": {
+    "apps": [
+      "hubspot",
+      "stripe",
+      "intercom"
+    ],
+    "job": "discover"
+  },
+  "apps": [
+    {
+      "key": "hubspot",
+      "name": "HubSpot",
+      "category": "CRM",
+      "guidePath": "/connectors/hubspot",
+      "referenceUrl": "https://docs.airbyte.com/integrations/sources/hubspot",
+      "referenceKind": "connector",
+      "referenceVersion": "6.8.0",
+      "streams": [
+        "contacts",
+        "companies",
+        "deals",
+        "campaigns",
+        "companies_property_history",
+        "contact_lists"
+      ],
+      "role": "Supplies a matched analysis"
+    },
+    {
+      "key": "stripe",
+      "name": "Stripe",
+      "category": "Finance",
+      "guidePath": "/connectors/stripe",
+      "referenceUrl": "https://docs.airbyte.com/integrations/sources/stripe",
+      "referenceKind": "connector",
+      "referenceVersion": "6.0.13",
+      "streams": [
+        "customers",
+        "invoices",
+        "charges",
+        "subscriptions",
+        "refunds",
+        "events"
+      ],
+      "role": "Supplies a matched analysis"
+    },
+    {
+      "key": "intercom",
+      "name": "Intercom",
+      "category": "Collaboration",
+      "guidePath": "/connectors/intercom",
+      "referenceUrl": "https://docs.airbyte.com/integrations/sources/intercom",
+      "referenceKind": "connector",
+      "referenceVersion": "0.13.24",
+      "streams": [
+        "conversations",
+        "contacts",
+        "conversation_parts",
+        "teams",
+        "companies",
+        "activity_logs"
+      ],
+      "role": "Supplies a matched analysis"
+    }
+  ],
+  "match": "multiple_recipes",
+  "recipes": [
+    {
+      "slug": "query-hubspot-and-stripe-with-ai",
+      "title": "HubSpot pipeline and Stripe paid invoices",
+      "apps": [
+        "hubspot",
+        "stripe"
+      ],
+      "job": "pipeline",
+      "grain": "One row per CRM company and currency",
+      "identity": "Map each scoped Stripe customer to its HubSpot company; check duplicate and unmatched customer mappings.",
+      "checks": [
+        "Choose current open-deal stages and an exact invoice-payment interval.",
+        "Normalize source currency units, then aggregate deals and qualifying invoices separately.",
+        "Keep companies without matched invoices; distinguish a complete zero from missing billing coverage."
+      ],
+      "sqlPath": "/examples/hubspot-stripe-pipeline.sql"
+    },
+    {
+      "slug": "deals-and-support-conversations",
+      "title": "HubSpot deals and unresolved Intercom conversations",
+      "apps": [
+        "hubspot",
+        "intercom"
+      ],
+      "job": "support",
+      "grain": "One row per CRM company; separate currencies for any monetary measure",
+      "identity": "Resolve each conversation to its intended reporting company through explicit linkage or a reviewed bridge. Do not assign every contact-associated company to every conversation; leave ambiguous matches for review.",
+      "checks": [
+        "Choose the customer-message interval and currently open conversations; internal updates and closed or snoozed conversations do not qualify for this example.",
+        "Count distinct conversations, not messages, participants or joined deals.",
+        "One company can have several conversations and deals; aggregate each record set first."
+      ],
+      "sqlPath": "/examples/workflows/deals-and-support-conversations.sql",
+      "expectedPath": "/examples/workflows/deals-and-support-conversations.expected.json"
+    }
+  ],
+  "steps": [
+    "In Combined Connected Apps, check each source's current Ready status and setup form. Authorize there, choose datasets and complete the first successful sync.",
+    "Grant the agent these sources explicitly in Access or Set up. A new source does not automatically enter an ordinary grant.",
+    "Discover the actual source and dataset schemas. The public catalog lists reference names, not guaranteed live tables or complete field lists.",
+    "Validate each identity map, duplicate keys and unmatched records. Give every calculation a clear reporting unit before combining results.",
+    "Check successful commits, available date coverage and the freshness needed for the decision. Missing coverage is unknown, not zero.",
+    "Agree date boundaries, states, measure definitions and currency units. Compute on all eligible records, then display a bounded answer with supporting evidence."
+  ],
+  "missingDecisions": [
+    "Exact reporting interval and observation date, including the timezone.",
+    "Source accounts, live/test scope, required datasets and an acceptable freshness threshold.",
+    "Maintained identity mappings and the treatment of duplicate or unmatched records.",
+    "These are separate tested pair examples. Select one analysis first, or agree a shared reporting unit before composing them; no combined multi-app SQL fixture has been tested here."
+  ],
+  "prompt": "Use my authorized Combined MCP connection to plan this analysis: Which useful analyses can I run across these business apps?\nSelected apps: HubSpot, Stripe, Intercom.\nUse list_sources and list_datasets, following pagination on both, then describe_dataset to find the actual granted sources, logical dataset names and fields. Do not invent table names from the catalog.\nUse get_freshness for the required sources, in batches of at most eight source IDs. An app can resolve to several Sources. Report any missing successful commit or date coverage before calculating.\nAnalysis: HubSpot pipeline and Stripe paid invoices.\nReporting unit: One row per CRM company and currency.\nMap each scoped Stripe customer to its HubSpot company; check duplicate and unmatched customer mappings.\nChoose current open-deal stages and an exact invoice-payment interval.\nNormalize source currency units, then aggregate deals and qualifying invoices separately.\nKeep companies without matched invoices; distinguish a complete zero from missing billing coverage.\nAnalysis: HubSpot deals and unresolved Intercom conversations.\nReporting unit: One row per CRM company; separate currencies for any monetary measure.\nResolve each conversation to its intended reporting company through explicit linkage or a reviewed bridge. Do not assign every contact-associated company to every conversation; leave ambiguous matches for review.\nChoose the customer-message interval and currently open conversations; internal updates and closed or snoozed conversations do not qualify for this example.\nCount distinct conversations, not messages, participants or joined deals.\nOne company can have several conversations and deals; aggregate each record set first.\nResolve these decisions before execution:\n- Exact reporting interval and observation date, including the timezone.\n- Source accounts, live/test scope, required datasets and an acceptable freshness threshold.\n- Maintained identity mappings and the treatment of duplicate or unmatched records.\n- These are separate tested pair examples. Select one analysis first, or agree a shared reporting unit before composing them; no combined multi-app SQL fixture has been tested here.\nFor a composed analysis, aggregate each independent record set before joining; never raw-join every selected app. Treat unmatched data separately from a verified empty result. Only add extra sources for an explicit context need.\nUse read-only query_sql with discovered logical relations and parameterized values. Keep SQL at most 16 KiB and at most 100 parameters. Calculate over the complete eligible dataset before limiting the displayed answer to 50 rows (the tool limit is 1,000).\nReturn the decision table, exact definitions and time bounds, source freshness, mapping exceptions, supporting record references and query receipt when supplied. If literal text context is needed, use bounded search_context and state its coverage.\nReturn proposed follow-up actions for review; this plan does not authorize sending messages, changing records or adding source grants.",
+  "shareUrl": "https://www.trycombined.com/resources/business-data-mcp-planner#apps=hubspot%2Cstripe%2Cintercom&job=discover",
+  "productUrl": "https://www.trycombined.com/",
+  "setupUrl": "https://www.trycombined.com/docs/getting-started/onboarding"
+}

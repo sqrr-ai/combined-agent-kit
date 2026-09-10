@@ -25,6 +25,14 @@ Select the skills and agents you want to use. Connect your Combined workspace th
 | [Read-only SQL](skills/combined-readonly-sql/SKILL.md) | Query granted datasets with bounded joins, aggregates and checkable receipts. |
 | [Revenue analysis](skills/combined-revenue-analysis/SKILL.md) | Define and reconcile billing and CRM metrics, with clear currencies and reporting windows. |
 
+## Plan your business-data MCP stack
+
+[Choose two to four apps in the free planner](https://www.trycombined.com/resources/business-data-mcp-planner) and get a connection plan, matched tutorials, customer-mapping checks and a copyable agent assignment. Save the selection as Markdown or JSON, or share the app-and-analysis link with your team.
+
+The planner connects the published connector library to nine worked examples covering pipeline, renewals, support, unpaid balances and retention. The default HubSpot–Stripe–Intercom selection offers two separate pair examples. For combinations without a matched recipe, it supplies schema-discovery steps to build the query from your actual granted datasets.
+
+[Read the default plan](examples/business-data-mcp-plan.md) · [Download the plan as JSON](examples/business-data-mcp-plan.json) · [Explore Combined](https://www.trycombined.com/)
+
 ## Explore the interactive join lab
 
 [Change the deals and invoices in your browser](https://www.trycombined.com/resources/crm-billing-join-lab), inspect the matching rows, and download the query for your scenario. Two deals and two invoices produce four raw joined rows; aggregating each source first preserves the correct totals.
