@@ -1,0 +1,1427 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureSetId": "business-answer-verification-v1",
+  "summary": {
+    "total": 12,
+    "pass": 1,
+    "fail": 9,
+    "insufficient_evidence": 2
+  },
+  "results": [
+    {
+      "id": "complete-answer",
+      "judgment": "pass",
+      "checks": [
+        {
+          "code": "evidence_account",
+          "status": "pass",
+          "message": "Evidence names the requested account."
+        },
+        {
+          "code": "claim_account",
+          "status": "pass",
+          "message": "The claim names the requested account."
+        },
+        {
+          "code": "claim_metric",
+          "status": "pass",
+          "message": "The structured metric matches the question."
+        },
+        {
+          "code": "required_datasets",
+          "status": "pass",
+          "message": "The supplied selection includes every required dataset."
+        },
+        {
+          "code": "evidence_interval",
+          "status": "pass",
+          "message": "Evidence describes the requested half-open interval."
+        },
+        {
+          "code": "evidence_timezone",
+          "status": "pass",
+          "message": "Evidence uses the requested timezone label."
+        },
+        {
+          "code": "claim_interval",
+          "status": "pass",
+          "message": "The claim uses the requested interval."
+        },
+        {
+          "code": "claim_timezone",
+          "status": "pass",
+          "message": "The claim uses the requested timezone label."
+        },
+        {
+          "code": "claim_currency",
+          "status": "pass",
+          "message": "The claim keeps the requested currency."
+        },
+        {
+          "code": "claim_unit",
+          "status": "pass",
+          "message": "The claim keeps integer minor units."
+        },
+        {
+          "code": "query_outcome",
+          "status": "pass",
+          "message": "The supplied query outcome is success."
+        },
+        {
+          "code": "query_reference",
+          "status": "pass",
+          "message": "A supplied query reference is present; its authenticity is not checked."
+        },
+        {
+          "code": "source_freshness",
+          "status": "pass",
+          "message": "The supplied commit time is within the stated freshness window."
+        },
+        {
+          "code": "evidence_coverage",
+          "status": "pass",
+          "message": "The supplied coverage metadata says complete; upstream completeness is not independently proved."
+        },
+        {
+          "code": "result_truncation",
+          "status": "pass",
+          "message": "The supplied result is marked untruncated."
+        },
+        {
+          "code": "population",
+          "status": "pass",
+          "message": "The claim addresses a complete population."
+        },
+        {
+          "code": "row_scope",
+          "status": "pass",
+          "message": "Supplied rows are consistent with their declared scope and unit."
+        },
+        {
+          "code": "citation_resolution",
+          "status": "pass",
+          "message": "Every supplied citation resolves inside this evidence object."
+        },
+        {
+          "code": "record_claims",
+          "status": "pass",
+          "message": "Structured record claims match their cited fields."
+        },
+        {
+          "code": "cited_population",
+          "status": "pass",
+          "message": "The aggregate cites exactly the qualifying supplied rows."
+        },
+        {
+          "code": "claim_value",
+          "status": "pass",
+          "message": "The structured amount equals the qualifying supplied row total."
+        }
+      ],
+      "reasons": []
+    },
+    {
+      "id": "wrong-account",
+      "judgment": "fail",
+      "checks": [
+        {
+          "code": "evidence_account",
+          "status": "fail",
+          "message": "Evidence names a different account; matching numbers cannot establish the requested account's answer."
+        },
+        {
+          "code": "claim_account",
+          "status": "pass",
+          "message": "The claim names the requested account."
+        },
+        {
+          "code": "claim_metric",
+          "status": "pass",
+          "message": "The structured metric matches the question."
+        },
+        {
+          "code": "required_datasets",
+          "status": "pass",
+          "message": "The supplied selection includes every required dataset."
+        },
+        {
+          "code": "evidence_interval",
+          "status": "pass",
+          "message": "Evidence describes the requested half-open interval."
+        },
+        {
+          "code": "evidence_timezone",
+          "status": "pass",
+          "message": "Evidence uses the requested timezone label."
+        },
+        {
+          "code": "claim_interval",
+          "status": "pass",
+          "message": "The claim uses the requested interval."
+        },
+        {
+          "code": "claim_timezone",
+          "status": "pass",
+          "message": "The claim uses the requested timezone label."
+        },
+        {
+          "code": "claim_currency",
+          "status": "pass",
+          "message": "The claim keeps the requested currency."
+        },
+        {
+          "code": "claim_unit",
+          "status": "pass",
+          "message": "The claim keeps integer minor units."
+        },
+        {
+          "code": "query_outcome",
+          "status": "pass",
+          "message": "The supplied query outcome is success."
+        },
+        {
+          "code": "query_reference",
+          "status": "pass",
+          "message": "A supplied query reference is present; its authenticity is not checked."
+        },
+        {
+          "code": "source_freshness",
+          "status": "pass",
+          "message": "The supplied commit time is within the stated freshness window."
+        },
+        {
+          "code": "evidence_coverage",
+          "status": "pass",
+          "message": "The supplied coverage metadata says complete; upstream completeness is not independently proved."
+        },
+        {
+          "code": "result_truncation",
+          "status": "pass",
+          "message": "The supplied result is marked untruncated."
+        },
+        {
+          "code": "population",
+          "status": "pass",
+          "message": "The claim addresses a complete population."
+        },
+        {
+          "code": "row_scope",
+          "status": "pass",
+          "message": "Supplied rows are consistent with their declared scope and unit."
+        },
+        {
+          "code": "citation_resolution",
+          "status": "pass",
+          "message": "Every supplied citation resolves inside this evidence object."
+        },
+        {
+          "code": "record_claims",
+          "status": "pass",
+          "message": "Structured record claims match their cited fields."
+        },
+        {
+          "code": "cited_population",
+          "status": "not_checked",
+          "message": "Query outcome, dataset or scope evidence is insufficient for a population comparison."
+        },
+        {
+          "code": "claim_value",
+          "status": "not_checked",
+          "message": "No numeric verdict is inferred from a failed query or missing/wrong-scope evidence."
+        }
+      ],
+      "reasons": [
+        {
+          "code": "evidence_account",
+          "message": "Evidence names a different account; matching numbers cannot establish the requested account's answer."
+        }
+      ]
+    },
+    {
+      "id": "missing-dataset",
+      "judgment": "insufficient_evidence",
+      "checks": [
+        {
+          "code": "evidence_account",
+          "status": "pass",
+          "message": "Evidence names the requested account."
+        },
+        {
+          "code": "claim_account",
+          "status": "pass",
+          "message": "The claim names the requested account."
+        },
+        {
+          "code": "claim_metric",
+          "status": "pass",
+          "message": "The structured metric matches the question."
+        },
+        {
+          "code": "required_datasets",
+          "status": "insufficient_evidence",
+          "message": "A required dataset is absent; missing access or data does not establish a total."
+        },
+        {
+          "code": "evidence_interval",
+          "status": "pass",
+          "message": "Evidence describes the requested half-open interval."
+        },
+        {
+          "code": "evidence_timezone",
+          "status": "pass",
+          "message": "Evidence uses the requested timezone label."
+        },
+        {
+          "code": "claim_interval",
+          "status": "pass",
+          "message": "The claim uses the requested interval."
+        },
+        {
+          "code": "claim_timezone",
+          "status": "pass",
+          "message": "The claim uses the requested timezone label."
+        },
+        {
+          "code": "claim_currency",
+          "status": "pass",
+          "message": "The claim keeps the requested currency."
+        },
+        {
+          "code": "claim_unit",
+          "status": "pass",
+          "message": "The claim keeps integer minor units."
+        },
+        {
+          "code": "query_outcome",
+          "status": "pass",
+          "message": "The supplied query outcome is success."
+        },
+        {
+          "code": "query_reference",
+          "status": "pass",
+          "message": "A supplied query reference is present; its authenticity is not checked."
+        },
+        {
+          "code": "source_freshness",
+          "status": "pass",
+          "message": "The supplied commit time is within the stated freshness window."
+        },
+        {
+          "code": "evidence_coverage",
+          "status": "pass",
+          "message": "The supplied coverage metadata says complete; upstream completeness is not independently proved."
+        },
+        {
+          "code": "result_truncation",
+          "status": "pass",
+          "message": "The supplied result is marked untruncated."
+        },
+        {
+          "code": "population",
+          "status": "pass",
+          "message": "The claim addresses a complete population."
+        },
+        {
+          "code": "row_scope",
+          "status": "pass",
+          "message": "Supplied rows are consistent with their declared scope and unit."
+        },
+        {
+          "code": "citation_resolution",
+          "status": "pass",
+          "message": "Every supplied citation resolves inside this evidence object."
+        },
+        {
+          "code": "record_claims",
+          "status": "pass",
+          "message": "Structured record claims match their cited fields."
+        },
+        {
+          "code": "cited_population",
+          "status": "not_checked",
+          "message": "Query outcome, dataset or scope evidence is insufficient for a population comparison."
+        },
+        {
+          "code": "claim_value",
+          "status": "not_checked",
+          "message": "No numeric verdict is inferred from a failed query or missing/wrong-scope evidence."
+        }
+      ],
+      "reasons": [
+        {
+          "code": "required_datasets",
+          "message": "A required dataset is absent; missing access or data does not establish a total."
+        }
+      ]
+    },
+    {
+      "id": "wrong-window",
+      "judgment": "fail",
+      "checks": [
+        {
+          "code": "evidence_account",
+          "status": "pass",
+          "message": "Evidence names the requested account."
+        },
+        {
+          "code": "claim_account",
+          "status": "pass",
+          "message": "The claim names the requested account."
+        },
+        {
+          "code": "claim_metric",
+          "status": "pass",
+          "message": "The structured metric matches the question."
+        },
+        {
+          "code": "required_datasets",
+          "status": "pass",
+          "message": "The supplied selection includes every required dataset."
+        },
+        {
+          "code": "evidence_interval",
+          "status": "pass",
+          "message": "Evidence describes the requested half-open interval."
+        },
+        {
+          "code": "evidence_timezone",
+          "status": "pass",
+          "message": "Evidence uses the requested timezone label."
+        },
+        {
+          "code": "claim_interval",
+          "status": "fail",
+          "message": "The claim changes the requested reporting interval."
+        },
+        {
+          "code": "claim_timezone",
+          "status": "fail",
+          "message": "The claim changes the requested reporting timezone."
+        },
+        {
+          "code": "claim_currency",
+          "status": "pass",
+          "message": "The claim keeps the requested currency."
+        },
+        {
+          "code": "claim_unit",
+          "status": "pass",
+          "message": "The claim keeps integer minor units."
+        },
+        {
+          "code": "query_outcome",
+          "status": "pass",
+          "message": "The supplied query outcome is success."
+        },
+        {
+          "code": "query_reference",
+          "status": "pass",
+          "message": "A supplied query reference is present; its authenticity is not checked."
+        },
+        {
+          "code": "source_freshness",
+          "status": "pass",
+          "message": "The supplied commit time is within the stated freshness window."
+        },
+        {
+          "code": "evidence_coverage",
+          "status": "pass",
+          "message": "The supplied coverage metadata says complete; upstream completeness is not independently proved."
+        },
+        {
+          "code": "result_truncation",
+          "status": "pass",
+          "message": "The supplied result is marked untruncated."
+        },
+        {
+          "code": "population",
+          "status": "pass",
+          "message": "The claim addresses a complete population."
+        },
+        {
+          "code": "row_scope",
+          "status": "pass",
+          "message": "Supplied rows are consistent with their declared scope and unit."
+        },
+        {
+          "code": "citation_resolution",
+          "status": "pass",
+          "message": "Every supplied citation resolves inside this evidence object."
+        },
+        {
+          "code": "record_claims",
+          "status": "pass",
+          "message": "Structured record claims match their cited fields."
+        },
+        {
+          "code": "cited_population",
+          "status": "pass",
+          "message": "The aggregate cites exactly the qualifying supplied rows."
+        },
+        {
+          "code": "claim_value",
+          "status": "pass",
+          "message": "The structured amount equals the qualifying supplied row total."
+        }
+      ],
+      "reasons": [
+        {
+          "code": "claim_interval",
+          "message": "The claim changes the requested reporting interval."
+        },
+        {
+          "code": "claim_timezone",
+          "message": "The claim changes the requested reporting timezone."
+        }
+      ]
+    },
+    {
+      "id": "altered-number",
+      "judgment": "fail",
+      "checks": [
+        {
+          "code": "evidence_account",
+          "status": "pass",
+          "message": "Evidence names the requested account."
+        },
+        {
+          "code": "claim_account",
+          "status": "pass",
+          "message": "The claim names the requested account."
+        },
+        {
+          "code": "claim_metric",
+          "status": "pass",
+          "message": "The structured metric matches the question."
+        },
+        {
+          "code": "required_datasets",
+          "status": "pass",
+          "message": "The supplied selection includes every required dataset."
+        },
+        {
+          "code": "evidence_interval",
+          "status": "pass",
+          "message": "Evidence describes the requested half-open interval."
+        },
+        {
+          "code": "evidence_timezone",
+          "status": "pass",
+          "message": "Evidence uses the requested timezone label."
+        },
+        {
+          "code": "claim_interval",
+          "status": "pass",
+          "message": "The claim uses the requested interval."
+        },
+        {
+          "code": "claim_timezone",
+          "status": "pass",
+          "message": "The claim uses the requested timezone label."
+        },
+        {
+          "code": "claim_currency",
+          "status": "pass",
+          "message": "The claim keeps the requested currency."
+        },
+        {
+          "code": "claim_unit",
+          "status": "pass",
+          "message": "The claim keeps integer minor units."
+        },
+        {
+          "code": "query_outcome",
+          "status": "pass",
+          "message": "The supplied query outcome is success."
+        },
+        {
+          "code": "query_reference",
+          "status": "pass",
+          "message": "A supplied query reference is present; its authenticity is not checked."
+        },
+        {
+          "code": "source_freshness",
+          "status": "pass",
+          "message": "The supplied commit time is within the stated freshness window."
+        },
+        {
+          "code": "evidence_coverage",
+          "status": "pass",
+          "message": "The supplied coverage metadata says complete; upstream completeness is not independently proved."
+        },
+        {
+          "code": "result_truncation",
+          "status": "pass",
+          "message": "The supplied result is marked untruncated."
+        },
+        {
+          "code": "population",
+          "status": "pass",
+          "message": "The claim addresses a complete population."
+        },
+        {
+          "code": "row_scope",
+          "status": "pass",
+          "message": "Supplied rows are consistent with their declared scope and unit."
+        },
+        {
+          "code": "citation_resolution",
+          "status": "pass",
+          "message": "Every supplied citation resolves inside this evidence object."
+        },
+        {
+          "code": "record_claims",
+          "status": "pass",
+          "message": "Structured record claims match their cited fields."
+        },
+        {
+          "code": "cited_population",
+          "status": "pass",
+          "message": "The aggregate cites exactly the qualifying supplied rows."
+        },
+        {
+          "code": "claim_value",
+          "status": "fail",
+          "message": "The structured amount differs from the qualifying supplied row total."
+        }
+      ],
+      "reasons": [
+        {
+          "code": "claim_value",
+          "message": "The structured amount differs from the qualifying supplied row total."
+        }
+      ]
+    },
+    {
+      "id": "wrong-currency-unit",
+      "judgment": "fail",
+      "checks": [
+        {
+          "code": "evidence_account",
+          "status": "pass",
+          "message": "Evidence names the requested account."
+        },
+        {
+          "code": "claim_account",
+          "status": "pass",
+          "message": "The claim names the requested account."
+        },
+        {
+          "code": "claim_metric",
+          "status": "pass",
+          "message": "The structured metric matches the question."
+        },
+        {
+          "code": "required_datasets",
+          "status": "pass",
+          "message": "The supplied selection includes every required dataset."
+        },
+        {
+          "code": "evidence_interval",
+          "status": "pass",
+          "message": "Evidence describes the requested half-open interval."
+        },
+        {
+          "code": "evidence_timezone",
+          "status": "pass",
+          "message": "Evidence uses the requested timezone label."
+        },
+        {
+          "code": "claim_interval",
+          "status": "pass",
+          "message": "The claim uses the requested interval."
+        },
+        {
+          "code": "claim_timezone",
+          "status": "pass",
+          "message": "The claim uses the requested timezone label."
+        },
+        {
+          "code": "claim_currency",
+          "status": "fail",
+          "message": "The claim changes currency without a conversion contract."
+        },
+        {
+          "code": "claim_unit",
+          "status": "fail",
+          "message": "The claim changes the monetary unit."
+        },
+        {
+          "code": "query_outcome",
+          "status": "pass",
+          "message": "The supplied query outcome is success."
+        },
+        {
+          "code": "query_reference",
+          "status": "pass",
+          "message": "A supplied query reference is present; its authenticity is not checked."
+        },
+        {
+          "code": "source_freshness",
+          "status": "pass",
+          "message": "The supplied commit time is within the stated freshness window."
+        },
+        {
+          "code": "evidence_coverage",
+          "status": "pass",
+          "message": "The supplied coverage metadata says complete; upstream completeness is not independently proved."
+        },
+        {
+          "code": "result_truncation",
+          "status": "pass",
+          "message": "The supplied result is marked untruncated."
+        },
+        {
+          "code": "population",
+          "status": "pass",
+          "message": "The claim addresses a complete population."
+        },
+        {
+          "code": "row_scope",
+          "status": "pass",
+          "message": "Supplied rows are consistent with their declared scope and unit."
+        },
+        {
+          "code": "citation_resolution",
+          "status": "pass",
+          "message": "Every supplied citation resolves inside this evidence object."
+        },
+        {
+          "code": "record_claims",
+          "status": "pass",
+          "message": "Structured record claims match their cited fields."
+        },
+        {
+          "code": "cited_population",
+          "status": "pass",
+          "message": "The aggregate cites exactly the qualifying supplied rows."
+        },
+        {
+          "code": "claim_value",
+          "status": "pass",
+          "message": "The structured amount equals the qualifying supplied row total."
+        }
+      ],
+      "reasons": [
+        {
+          "code": "claim_currency",
+          "message": "The claim changes currency without a conversion contract."
+        },
+        {
+          "code": "claim_unit",
+          "message": "The claim changes the monetary unit."
+        }
+      ]
+    },
+    {
+      "id": "stale-source",
+      "judgment": "fail",
+      "checks": [
+        {
+          "code": "evidence_account",
+          "status": "pass",
+          "message": "Evidence names the requested account."
+        },
+        {
+          "code": "claim_account",
+          "status": "pass",
+          "message": "The claim names the requested account."
+        },
+        {
+          "code": "claim_metric",
+          "status": "pass",
+          "message": "The structured metric matches the question."
+        },
+        {
+          "code": "required_datasets",
+          "status": "pass",
+          "message": "The supplied selection includes every required dataset."
+        },
+        {
+          "code": "evidence_interval",
+          "status": "pass",
+          "message": "Evidence describes the requested half-open interval."
+        },
+        {
+          "code": "evidence_timezone",
+          "status": "pass",
+          "message": "Evidence uses the requested timezone label."
+        },
+        {
+          "code": "claim_interval",
+          "status": "pass",
+          "message": "The claim uses the requested interval."
+        },
+        {
+          "code": "claim_timezone",
+          "status": "pass",
+          "message": "The claim uses the requested timezone label."
+        },
+        {
+          "code": "claim_currency",
+          "status": "pass",
+          "message": "The claim keeps the requested currency."
+        },
+        {
+          "code": "claim_unit",
+          "status": "pass",
+          "message": "The claim keeps integer minor units."
+        },
+        {
+          "code": "query_outcome",
+          "status": "pass",
+          "message": "The supplied query outcome is success."
+        },
+        {
+          "code": "query_reference",
+          "status": "pass",
+          "message": "A supplied query reference is present; its authenticity is not checked."
+        },
+        {
+          "code": "source_freshness",
+          "status": "fail",
+          "message": "The supplied source commit is outside the freshness policy or is in the future."
+        },
+        {
+          "code": "evidence_coverage",
+          "status": "pass",
+          "message": "The supplied coverage metadata says complete; upstream completeness is not independently proved."
+        },
+        {
+          "code": "result_truncation",
+          "status": "pass",
+          "message": "The supplied result is marked untruncated."
+        },
+        {
+          "code": "population",
+          "status": "pass",
+          "message": "The claim addresses a complete population."
+        },
+        {
+          "code": "row_scope",
+          "status": "pass",
+          "message": "Supplied rows are consistent with their declared scope and unit."
+        },
+        {
+          "code": "citation_resolution",
+          "status": "pass",
+          "message": "Every supplied citation resolves inside this evidence object."
+        },
+        {
+          "code": "record_claims",
+          "status": "pass",
+          "message": "Structured record claims match their cited fields."
+        },
+        {
+          "code": "cited_population",
+          "status": "pass",
+          "message": "The aggregate cites exactly the qualifying supplied rows."
+        },
+        {
+          "code": "claim_value",
+          "status": "pass",
+          "message": "The structured amount equals the qualifying supplied row total."
+        }
+      ],
+      "reasons": [
+        {
+          "code": "source_freshness",
+          "message": "The supplied source commit is outside the freshness policy or is in the future."
+        }
+      ]
+    },
+    {
+      "id": "truncated-population",
+      "judgment": "fail",
+      "checks": [
+        {
+          "code": "evidence_account",
+          "status": "pass",
+          "message": "Evidence names the requested account."
+        },
+        {
+          "code": "claim_account",
+          "status": "pass",
+          "message": "The claim names the requested account."
+        },
+        {
+          "code": "claim_metric",
+          "status": "pass",
+          "message": "The structured metric matches the question."
+        },
+        {
+          "code": "required_datasets",
+          "status": "pass",
+          "message": "The supplied selection includes every required dataset."
+        },
+        {
+          "code": "evidence_interval",
+          "status": "pass",
+          "message": "Evidence describes the requested half-open interval."
+        },
+        {
+          "code": "evidence_timezone",
+          "status": "pass",
+          "message": "Evidence uses the requested timezone label."
+        },
+        {
+          "code": "claim_interval",
+          "status": "pass",
+          "message": "The claim uses the requested interval."
+        },
+        {
+          "code": "claim_timezone",
+          "status": "pass",
+          "message": "The claim uses the requested timezone label."
+        },
+        {
+          "code": "claim_currency",
+          "status": "pass",
+          "message": "The claim keeps the requested currency."
+        },
+        {
+          "code": "claim_unit",
+          "status": "pass",
+          "message": "The claim keeps integer minor units."
+        },
+        {
+          "code": "query_outcome",
+          "status": "pass",
+          "message": "The supplied query outcome is success."
+        },
+        {
+          "code": "query_reference",
+          "status": "pass",
+          "message": "A supplied query reference is present; its authenticity is not checked."
+        },
+        {
+          "code": "source_freshness",
+          "status": "pass",
+          "message": "The supplied commit time is within the stated freshness window."
+        },
+        {
+          "code": "evidence_coverage",
+          "status": "pass",
+          "message": "The supplied coverage metadata says complete; upstream completeness is not independently proved."
+        },
+        {
+          "code": "result_truncation",
+          "status": "fail",
+          "message": "A truncated result cannot establish the claimed complete population total."
+        },
+        {
+          "code": "population",
+          "status": "pass",
+          "message": "The claim addresses a complete population."
+        },
+        {
+          "code": "row_scope",
+          "status": "pass",
+          "message": "Supplied rows are consistent with their declared scope and unit."
+        },
+        {
+          "code": "citation_resolution",
+          "status": "pass",
+          "message": "Every supplied citation resolves inside this evidence object."
+        },
+        {
+          "code": "record_claims",
+          "status": "pass",
+          "message": "Structured record claims match their cited fields."
+        },
+        {
+          "code": "cited_population",
+          "status": "pass",
+          "message": "The aggregate cites exactly the qualifying supplied rows."
+        },
+        {
+          "code": "claim_value",
+          "status": "pass",
+          "message": "The structured amount equals the qualifying supplied row total."
+        }
+      ],
+      "reasons": [
+        {
+          "code": "result_truncation",
+          "message": "A truncated result cannot establish the claimed complete population total."
+        }
+      ]
+    },
+    {
+      "id": "access-error-zero",
+      "judgment": "fail",
+      "checks": [
+        {
+          "code": "evidence_account",
+          "status": "pass",
+          "message": "Evidence names the requested account."
+        },
+        {
+          "code": "claim_account",
+          "status": "pass",
+          "message": "The claim names the requested account."
+        },
+        {
+          "code": "claim_metric",
+          "status": "pass",
+          "message": "The structured metric matches the question."
+        },
+        {
+          "code": "required_datasets",
+          "status": "pass",
+          "message": "The supplied selection includes every required dataset."
+        },
+        {
+          "code": "evidence_interval",
+          "status": "pass",
+          "message": "Evidence describes the requested half-open interval."
+        },
+        {
+          "code": "evidence_timezone",
+          "status": "pass",
+          "message": "Evidence uses the requested timezone label."
+        },
+        {
+          "code": "claim_interval",
+          "status": "pass",
+          "message": "The claim uses the requested interval."
+        },
+        {
+          "code": "claim_timezone",
+          "status": "pass",
+          "message": "The claim uses the requested timezone label."
+        },
+        {
+          "code": "claim_currency",
+          "status": "pass",
+          "message": "The claim keeps the requested currency."
+        },
+        {
+          "code": "claim_unit",
+          "status": "pass",
+          "message": "The claim keeps integer minor units."
+        },
+        {
+          "code": "query_outcome",
+          "status": "fail",
+          "message": "The query did not succeed; an access error or other failure is not evidence for zero activity."
+        },
+        {
+          "code": "query_reference",
+          "status": "pass",
+          "message": "A supplied query reference is present; its authenticity is not checked."
+        },
+        {
+          "code": "source_freshness",
+          "status": "pass",
+          "message": "The supplied commit time is within the stated freshness window."
+        },
+        {
+          "code": "evidence_coverage",
+          "status": "pass",
+          "message": "The supplied coverage metadata says complete; upstream completeness is not independently proved."
+        },
+        {
+          "code": "result_truncation",
+          "status": "pass",
+          "message": "The supplied result is marked untruncated."
+        },
+        {
+          "code": "population",
+          "status": "pass",
+          "message": "The claim addresses a complete population."
+        },
+        {
+          "code": "row_scope",
+          "status": "pass",
+          "message": "Supplied rows are consistent with their declared scope and unit."
+        },
+        {
+          "code": "citation_resolution",
+          "status": "pass",
+          "message": "Every supplied citation resolves inside this evidence object."
+        },
+        {
+          "code": "record_claims",
+          "status": "pass",
+          "message": "Structured record claims match their cited fields."
+        },
+        {
+          "code": "cited_population",
+          "status": "not_checked",
+          "message": "Query outcome, dataset or scope evidence is insufficient for a population comparison."
+        },
+        {
+          "code": "claim_value",
+          "status": "not_checked",
+          "message": "No numeric verdict is inferred from a failed query or missing/wrong-scope evidence."
+        }
+      ],
+      "reasons": [
+        {
+          "code": "query_outcome",
+          "message": "The query did not succeed; an access error or other failure is not evidence for zero activity."
+        }
+      ]
+    },
+    {
+      "id": "missing-citation",
+      "judgment": "fail",
+      "checks": [
+        {
+          "code": "evidence_account",
+          "status": "pass",
+          "message": "Evidence names the requested account."
+        },
+        {
+          "code": "claim_account",
+          "status": "pass",
+          "message": "The claim names the requested account."
+        },
+        {
+          "code": "claim_metric",
+          "status": "pass",
+          "message": "The structured metric matches the question."
+        },
+        {
+          "code": "required_datasets",
+          "status": "pass",
+          "message": "The supplied selection includes every required dataset."
+        },
+        {
+          "code": "evidence_interval",
+          "status": "pass",
+          "message": "Evidence describes the requested half-open interval."
+        },
+        {
+          "code": "evidence_timezone",
+          "status": "pass",
+          "message": "Evidence uses the requested timezone label."
+        },
+        {
+          "code": "claim_interval",
+          "status": "pass",
+          "message": "The claim uses the requested interval."
+        },
+        {
+          "code": "claim_timezone",
+          "status": "pass",
+          "message": "The claim uses the requested timezone label."
+        },
+        {
+          "code": "claim_currency",
+          "status": "pass",
+          "message": "The claim keeps the requested currency."
+        },
+        {
+          "code": "claim_unit",
+          "status": "pass",
+          "message": "The claim keeps integer minor units."
+        },
+        {
+          "code": "query_outcome",
+          "status": "pass",
+          "message": "The supplied query outcome is success."
+        },
+        {
+          "code": "query_reference",
+          "status": "pass",
+          "message": "A supplied query reference is present; its authenticity is not checked."
+        },
+        {
+          "code": "source_freshness",
+          "status": "pass",
+          "message": "The supplied commit time is within the stated freshness window."
+        },
+        {
+          "code": "evidence_coverage",
+          "status": "pass",
+          "message": "The supplied coverage metadata says complete; upstream completeness is not independently proved."
+        },
+        {
+          "code": "result_truncation",
+          "status": "pass",
+          "message": "The supplied result is marked untruncated."
+        },
+        {
+          "code": "population",
+          "status": "pass",
+          "message": "The claim addresses a complete population."
+        },
+        {
+          "code": "row_scope",
+          "status": "pass",
+          "message": "Supplied rows are consistent with their declared scope and unit."
+        },
+        {
+          "code": "citation_resolution",
+          "status": "fail",
+          "message": "At least one citation has no corresponding supplied evidence row."
+        },
+        {
+          "code": "record_claims",
+          "status": "not_checked",
+          "message": "An unresolved citation prevents a complete record-claim check."
+        },
+        {
+          "code": "cited_population",
+          "status": "not_checked",
+          "message": "An unresolved citation prevents a complete citation-set check."
+        },
+        {
+          "code": "claim_value",
+          "status": "pass",
+          "message": "The structured amount equals the qualifying supplied row total."
+        }
+      ],
+      "reasons": [
+        {
+          "code": "citation_resolution",
+          "message": "At least one citation has no corresponding supplied evidence row."
+        }
+      ]
+    },
+    {
+      "id": "contradictory-citation",
+      "judgment": "fail",
+      "checks": [
+        {
+          "code": "evidence_account",
+          "status": "pass",
+          "message": "Evidence names the requested account."
+        },
+        {
+          "code": "claim_account",
+          "status": "pass",
+          "message": "The claim names the requested account."
+        },
+        {
+          "code": "claim_metric",
+          "status": "pass",
+          "message": "The structured metric matches the question."
+        },
+        {
+          "code": "required_datasets",
+          "status": "pass",
+          "message": "The supplied selection includes every required dataset."
+        },
+        {
+          "code": "evidence_interval",
+          "status": "pass",
+          "message": "Evidence describes the requested half-open interval."
+        },
+        {
+          "code": "evidence_timezone",
+          "status": "pass",
+          "message": "Evidence uses the requested timezone label."
+        },
+        {
+          "code": "claim_interval",
+          "status": "pass",
+          "message": "The claim uses the requested interval."
+        },
+        {
+          "code": "claim_timezone",
+          "status": "pass",
+          "message": "The claim uses the requested timezone label."
+        },
+        {
+          "code": "claim_currency",
+          "status": "pass",
+          "message": "The claim keeps the requested currency."
+        },
+        {
+          "code": "claim_unit",
+          "status": "pass",
+          "message": "The claim keeps integer minor units."
+        },
+        {
+          "code": "query_outcome",
+          "status": "pass",
+          "message": "The supplied query outcome is success."
+        },
+        {
+          "code": "query_reference",
+          "status": "pass",
+          "message": "A supplied query reference is present; its authenticity is not checked."
+        },
+        {
+          "code": "source_freshness",
+          "status": "pass",
+          "message": "The supplied commit time is within the stated freshness window."
+        },
+        {
+          "code": "evidence_coverage",
+          "status": "pass",
+          "message": "The supplied coverage metadata says complete; upstream completeness is not independently proved."
+        },
+        {
+          "code": "result_truncation",
+          "status": "pass",
+          "message": "The supplied result is marked untruncated."
+        },
+        {
+          "code": "population",
+          "status": "pass",
+          "message": "The claim addresses a complete population."
+        },
+        {
+          "code": "row_scope",
+          "status": "pass",
+          "message": "Supplied rows are consistent with their declared scope and unit."
+        },
+        {
+          "code": "citation_resolution",
+          "status": "pass",
+          "message": "Every supplied citation resolves inside this evidence object."
+        },
+        {
+          "code": "record_claims",
+          "status": "fail",
+          "message": "A structured record claim contradicts its cited field."
+        },
+        {
+          "code": "cited_population",
+          "status": "pass",
+          "message": "The aggregate cites exactly the qualifying supplied rows."
+        },
+        {
+          "code": "claim_value",
+          "status": "pass",
+          "message": "The structured amount equals the qualifying supplied row total."
+        }
+      ],
+      "reasons": [
+        {
+          "code": "record_claims",
+          "message": "A structured record claim contradicts its cited field."
+        }
+      ]
+    },
+    {
+      "id": "missing-metadata",
+      "judgment": "insufficient_evidence",
+      "checks": [
+        {
+          "code": "evidence_account",
+          "status": "pass",
+          "message": "Evidence names the requested account."
+        },
+        {
+          "code": "claim_account",
+          "status": "pass",
+          "message": "The claim names the requested account."
+        },
+        {
+          "code": "claim_metric",
+          "status": "pass",
+          "message": "The structured metric matches the question."
+        },
+        {
+          "code": "required_datasets",
+          "status": "pass",
+          "message": "The supplied selection includes every required dataset."
+        },
+        {
+          "code": "evidence_interval",
+          "status": "pass",
+          "message": "Evidence describes the requested half-open interval."
+        },
+        {
+          "code": "evidence_timezone",
+          "status": "pass",
+          "message": "Evidence uses the requested timezone label."
+        },
+        {
+          "code": "claim_interval",
+          "status": "pass",
+          "message": "The claim uses the requested interval."
+        },
+        {
+          "code": "claim_timezone",
+          "status": "pass",
+          "message": "The claim uses the requested timezone label."
+        },
+        {
+          "code": "claim_currency",
+          "status": "pass",
+          "message": "The claim keeps the requested currency."
+        },
+        {
+          "code": "claim_unit",
+          "status": "pass",
+          "message": "The claim keeps integer minor units."
+        },
+        {
+          "code": "query_outcome",
+          "status": "pass",
+          "message": "The supplied query outcome is success."
+        },
+        {
+          "code": "query_reference",
+          "status": "pass",
+          "message": "A supplied query reference is present; its authenticity is not checked."
+        },
+        {
+          "code": "source_freshness",
+          "status": "insufficient_evidence",
+          "message": "The last successful source commit is unknown."
+        },
+        {
+          "code": "evidence_coverage",
+          "status": "insufficient_evidence",
+          "message": "Supplied coverage is partial or unknown."
+        },
+        {
+          "code": "result_truncation",
+          "status": "insufficient_evidence",
+          "message": "Whether the supplied result was truncated is unknown."
+        },
+        {
+          "code": "population",
+          "status": "pass",
+          "message": "The claim addresses a complete population."
+        },
+        {
+          "code": "row_scope",
+          "status": "pass",
+          "message": "Supplied rows are consistent with their declared scope and unit."
+        },
+        {
+          "code": "citation_resolution",
+          "status": "pass",
+          "message": "Every supplied citation resolves inside this evidence object."
+        },
+        {
+          "code": "record_claims",
+          "status": "pass",
+          "message": "Structured record claims match their cited fields."
+        },
+        {
+          "code": "cited_population",
+          "status": "pass",
+          "message": "The aggregate cites exactly the qualifying supplied rows."
+        },
+        {
+          "code": "claim_value",
+          "status": "pass",
+          "message": "The structured amount equals the qualifying supplied row total."
+        }
+      ],
+      "reasons": [
+        {
+          "code": "source_freshness",
+          "message": "The last successful source commit is unknown."
+        },
+        {
+          "code": "evidence_coverage",
+          "message": "Supplied coverage is partial or unknown."
+        },
+        {
+          "code": "result_truncation",
+          "message": "Whether the supplied result was truncated is unknown."
+        }
+      ]
+    }
+  ]
+}

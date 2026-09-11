@@ -1,0 +1,258 @@
+{
+  "schemaVersion": "1.0.0",
+  "total": 47,
+  "passed": 47,
+  "failed": 0,
+  "checks": [
+    {
+      "id": "independent-expected-and-structured-fixtures-unchanged",
+      "passed": true
+    },
+    {
+      "id": "row-order-does-not-change-the-total",
+      "passed": true,
+      "judgment": "pass",
+      "reasonCodes": []
+    },
+    {
+      "id": "an-open-invoice-is-not-paid",
+      "passed": true,
+      "judgment": "pass",
+      "reasonCodes": []
+    },
+    {
+      "id": "an-earlier-invoice-is-outside-the-window",
+      "passed": true,
+      "judgment": "pass",
+      "reasonCodes": []
+    },
+    {
+      "id": "the-end-boundary-is-exclusive",
+      "passed": true,
+      "judgment": "pass",
+      "reasonCodes": []
+    },
+    {
+      "id": "the-start-boundary-is-inclusive",
+      "passed": true,
+      "judgment": "pass",
+      "reasonCodes": []
+    },
+    {
+      "id": "complete-successful-empty-result-can-prove-zero-locally",
+      "passed": true,
+      "judgment": "pass",
+      "reasonCodes": []
+    },
+    {
+      "id": "missing-query-reference-is-insufficient",
+      "passed": true,
+      "judgment": "insufficient_evidence",
+      "reasonCodes": ["query_reference"]
+    },
+    {
+      "id": "exact-freshness-boundary-passes",
+      "passed": true,
+      "judgment": "pass",
+      "reasonCodes": []
+    },
+    {
+      "id": "one-second-outside-freshness-fails",
+      "passed": true,
+      "judgment": "fail",
+      "reasonCodes": ["source_freshness"]
+    },
+    {
+      "id": "future-commit-is-not-freshness-proof",
+      "passed": true,
+      "judgment": "fail",
+      "reasonCodes": ["source_freshness"]
+    },
+    {
+      "id": "partial-coverage-is-insufficient",
+      "passed": true,
+      "judgment": "insufficient_evidence",
+      "reasonCodes": ["evidence_coverage"]
+    },
+    {
+      "id": "partial-truncated-answer-does-not-become-complete",
+      "passed": true,
+      "judgment": "insufficient_evidence",
+      "reasonCodes": ["result_truncation", "population"]
+    },
+    {
+      "id": "row-account-cannot-override-envelope",
+      "passed": true,
+      "judgment": "fail",
+      "reasonCodes": ["row_scope"]
+    },
+    {
+      "id": "all-qualifying-rows-must-be-cited",
+      "passed": true,
+      "judgment": "fail",
+      "reasonCodes": ["cited_population"]
+    },
+    {
+      "id": "known-contradiction-survives-an-unresolved-citation",
+      "passed": true,
+      "judgment": "fail",
+      "reasonCodes": ["citation_resolution", "record_claims"]
+    },
+    {
+      "id": "human-prose-is-not-a-machine-checked-claim",
+      "passed": true,
+      "judgment": "pass",
+      "reasonCodes": []
+    },
+    {
+      "id": "boolean-money-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "fractional-money-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "negative-money-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "unsafe-integer-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "aggregate-overflow-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "duplicate-row-id-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "duplicate-case-id-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "duplicate-reference-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "duplicate-record-field-claim-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "invalid-calendar-date-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "nonboolean-truncation-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "omitted-structural-key-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "unknown-filepath-field-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "arbitrary-record-field-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "unsupported-version-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "oversized-row-array-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "boolean-age-policy-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "reversed-interval-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "nan-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "infinity-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "negative-infinity-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "overflowing-exponent-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "floating-json-number-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "duplicate-json-key-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "too-large-json-integer-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "invalid-utf8-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "oversized-file-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "excessive-nesting-rejected",
+      "passed": true,
+      "outcome": "invalid_input"
+    },
+    {
+      "id": "cli-rejects-deliberately-wrong-expectation",
+      "passed": true,
+      "exitCode": 1
+    },
+    {
+      "id": "cli-rejects-malformed-input-with-no-result",
+      "passed": true,
+      "exitCode": 2
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifact": "business-answer-verification-v1",
+  "execution": {
+    "startedAt": "2026-09-11T12:12:22.412277+00:00",
+    "completedAt": "2026-09-11T12:12:22.488596+00:00",
+    "command": ["python3", "verify_answers.py", "cases.json", "--verify", "expected.json"],
+    "exitCode": 0,
+    "expectedMatched": true,
+    "summary": {
+      "total": 12,
+      "pass": 1,
+      "fail": 9,
+      "insufficient_evidence": 2
+    }
+  },
+  "validation": {
+    "startedAt": "2026-09-11T12:12:22.488638+00:00",
+    "completedAt": "2026-09-11T12:12:22.711688+00:00",
+    "exitCode": 0,
+    "total": 47,
+    "passed": 47,
+    "failed": 0,
+    "privateScriptSha256": "85b542d6966ea6a5664e7b2597a64c033ebdf1b91eb2194a1926d34f02e66339"
+  },
+  "environment": {
+    "pythonVersion": "3.14.6",
+    "pythonImplementation": "CPython",
+    "system": "Darwin",
+    "machine": "arm64",
+    "stdlibOnly": true,
+    "networkCalls": 0,
+    "liveAccountCalls": 0,
+    "modelCalls": 0
+  },
+  "sourceChecks": {
+    "repositoryRuffCheck": "passed",
+    "publicSourceLineCounts": {
+      "answer_format.py": 266,
+      "verify_answers.py": 379
+    },
+    "python39SyntaxParse": "passed",
+    "python39RuntimeExecuted": false,
+    "note": "The actual runtime was the Python version recorded above; Python3.9 syntax parsing is not a runtime test."
+  },
+  "expectedProvenance": {
+    "specifiedBeforeRunnerAt": "2026-09-11T11:57:54.798565+00:00",
+    "originalExpectedSha256": "45e5e1ad4c6a2ad0dcfbeede36c1d06419712301aed501abfdac4e22e440e755",
+    "structuredFixturesSha256": "43803792552791084a96ab2580596fb10cbad3c4633752d48a31e8fff61dfc59",
+    "displayOnlyChanges": [
+      {
+        "at": "2026-09-11T12:07:51.119828+00:00",
+        "caseId": "access-error-zero",
+        "field": "title",
+        "before": "An access error becomes zero revenue",
+        "after": "An access error becomes zero payments",
+        "reason": "Paid invoices are not an accounting revenue metric. Frontend review requested this wording correction. No structured claim, evidence, question contract or expected judgment changed.",
+        "beforeFileSha256": "a2d95699a1f9ed8eb3a74ac741a7cb33f83bddd04a0e126eb007c58574fecb02",
+        "afterFileSha256": "411a648071d7e3ee6fc3d500d0b2799ed749835b9a1206934c938f69c37429fd"
+      }
+    ],
+    "originalExpectedBytesUnchangedDuringPreparation": true
+  },
+  "sha256": {
+    "README.md": "1a94904086ddc522719c98b514d7a068f6da5ca0dc2d93e7e21dd3b3bb126cfd",
+    "cases.json": "9ab3e78a81b3d5011468edac00105a9dc40d68541b7e49aa44cb26148846a026",
+    "expected.json": "afaf2f10a5c0058d84c1adae00da4b2090d5cf46ebf85cf2114c43b4067a0bb8",
+    "answer_format.py": "016f8f55a24a7b7066c2a54cb6d871fbd9795d69c4494f3325fd7f2364de3379",
+    "verify_answers.py": "8e4da12712eb1d9f7ed9af5ae900915834d8a3eeb542258df0ef7076c63e0e16",
+    "observed.json": "59c0b02e2f00da1b518bdd8e7f4d7742d7920ca4d84e08b8153fd9ccde5c2f11",
+    "validation-results.json": "52d4b7eab33149199dcd7bab9a5220da5f7f75c56757021fae0c7844c0ba8f14"
+  },
+  "jsonSemanticSha256": {
+    "cases.json": "866689302b4b6e1eaa7821a13146edaaa67be934ca4381cf8cb4c65ec34ee0bf",
+    "expected.json": "ff9fa7b5e6f5538a46751b2ebb57649cd3ba28a4c154126a729e15ea85778042",
+    "observed.json": "fcc46d7a39cf7badbbe3b74e03a2e664afdfed52e877d057cc6eba3b1534f4ba",
+    "validation-results.json": "eac8c442a62d21cce3ede60d7cd097ec743559aae5646bff49aec372fbf56e01"
+  },
+  "sourceInspection": {
+    "productRevision": "8970518506ea6cc22e368fb02e0f81e15d83e2fc",
+    "files": [
+      "apps/platform/features/mcp/server/result.ts",
+      "apps/platform/features/mcp/server/query-tools.ts",
+      "apps/platform/features/mcp/server/catalog-tools.ts",
+      "apps/platform/features/query/server/broker/execute.ts",
+      "shared/contracts/src/domain/query.ts",
+      "sdk/typescript/src/resources/query.ts"
+    ],
+    "accountUsed": false
+  },
+  "limitations": [
+    "Synthetic supplied evidence only; no production agent or service was tested.",
+    "Structured claims are checked; free-form prose is not graded.",
+    "A pass does not authenticate an export, enforce a live grant, establish upstream completeness or prove causation."
+  ],
+  "executionSourceSha256": {
+    "README.md": "1a94904086ddc522719c98b514d7a068f6da5ca0dc2d93e7e21dd3b3bb126cfd",
+    "cases.json": "411a648071d7e3ee6fc3d500d0b2799ed749835b9a1206934c938f69c37429fd",
+    "expected.json": "45e5e1ad4c6a2ad0dcfbeede36c1d06419712301aed501abfdac4e22e440e755",
+    "answer_format.py": "016f8f55a24a7b7066c2a54cb6d871fbd9795d69c4494f3325fd7f2364de3379",
+    "verify_answers.py": "8e4da12712eb1d9f7ed9af5ae900915834d8a3eeb542258df0ef7076c63e0e16",
+    "observed.json": "59c0b02e2f00da1b518bdd8e7f4d7742d7920ca4d84e08b8153fd9ccde5c2f11",
+    "validation-results.json": "aa4e97a683d3cd9c4c3a93a5bc39a0d230a45eafe1d6af91180ac12a7b0afd59"
+  },
+  "publication": {
+    "at": "2026-09-11T12:19:51.631122+00:00",
+    "formatter": "Repository Biome 2.5.8",
+    "jsonValuesUnchanged": true,
+    "note": "JSON whitespace was formatted for publication. executionSourceSha256 retains the executed preparation files; sha256 identifies the downloadable files. Expected judgments and reason codes are unchanged.",
+    "publicFileExecutionExit": 0,
+    "publicObservedMatched": true
+  }
+}

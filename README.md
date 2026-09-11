@@ -52,6 +52,16 @@ The planner connects the published connector library to nine worked examples cov
 
 Read the evaluations of [Glean](https://www.trycombined.com/resources/combined-vs-glean), [Paragon](https://www.trycombined.com/resources/combined-vs-paragon), [Snowflake MCP](https://www.trycombined.com/resources/combined-vs-snowflake-mcp) and [Databricks MCP](https://www.trycombined.com/resources/combined-vs-databricks-mcp), then use the planner to select the apps for your first Combined connection.
 
+Compare the choices by workload: [cross-app business analytics](https://www.trycombined.com/resources/best-mcp-servers-for-business-data), [SaaS actions and Composio alternatives](https://www.trycombined.com/resources/best-ai-agent-tool-platforms), or [persistent agent memory](https://www.trycombined.com/resources/best-ai-agent-memory-platforms). Each ranked shortlist explains its starting assumptions and links to the current product documentation.
+
+## Verify an agent’s business-data answer
+
+[Explore twelve structured answers in the interactive lab](https://www.trycombined.com/resources/verify-ai-agent-business-data-answers), then run the [free Python checker](examples/answer-verification/README.md) against the same synthetic invoices. It catches wrong-account evidence, altered totals, currency mismatches, stale sources, incomplete results and contradictions in citations. Missing evidence remains visible.
+
+The recorded run matches all twelve prewritten expectations: one pass, nine deliberate failures and two insufficient-evidence judgments. The checker evaluates supplied structured fields; it does not grade arbitrary prose or contact an account. Use the example to define what a correct answer to your own business question must include.
+
+[Download the cases](examples/answer-verification/cases.json) · [Inspect recorded results](examples/answer-verification/observed.json) · [Explore Combined](https://www.trycombined.com/)
+
 ## Evaluate pipeline changes and recovery
 
 Compare [Combined with MotherDuck](https://www.trycombined.com/resources/combined-vs-motherduck) and [custom ETL](https://www.trycombined.com/resources/combined-vs-custom-etl) using a concrete business question and an explicit operating-cost worksheet.

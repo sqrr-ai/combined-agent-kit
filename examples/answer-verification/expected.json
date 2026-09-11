@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureSetId": "business-answer-verification-v1",
+  "results": [
+    {
+      "id": "complete-answer",
+      "judgment": "pass",
+      "reasonCodes": [],
+      "explanation": "The supplied scope, arithmetic, cited records and metadata meet the stated teaching contract."
+    },
+    {
+      "id": "wrong-account",
+      "judgment": "fail",
+      "reasonCodes": ["evidence_account"],
+      "explanation": "Contoso evidence cannot substantiate a claim about Acme, even when the amount happens to match."
+    },
+    {
+      "id": "missing-dataset",
+      "judgment": "insufficient_evidence",
+      "reasonCodes": ["required_datasets"],
+      "explanation": "The required paid-invoices dataset is absent; missing data does not establish a total."
+    },
+    {
+      "id": "wrong-window",
+      "judgment": "fail",
+      "reasonCodes": ["claim_interval", "claim_timezone"],
+      "explanation": "The answer uses a different reporting interval and timezone from the question."
+    },
+    {
+      "id": "altered-number",
+      "judgment": "fail",
+      "reasonCodes": ["claim_value"],
+      "explanation": "The supplied paid rows total 500000 USD minor units, not 550000."
+    },
+    {
+      "id": "wrong-currency-unit",
+      "judgment": "fail",
+      "reasonCodes": ["claim_currency", "claim_unit"],
+      "explanation": "The claim relabels USD minor units as EUR major units without a conversion rule."
+    },
+    {
+      "id": "stale-source",
+      "judgment": "fail",
+      "reasonCodes": ["source_freshness"],
+      "explanation": "The source snapshot is 72 hours old against the explicit 24-hour policy."
+    },
+    {
+      "id": "truncated-population",
+      "judgment": "fail",
+      "reasonCodes": ["result_truncation"],
+      "explanation": "A truncated result cannot support the claimed complete population total."
+    },
+    {
+      "id": "access-error-zero",
+      "judgment": "fail",
+      "reasonCodes": ["query_outcome"],
+      "explanation": "An access-denied result is not evidence for zero activity."
+    },
+    {
+      "id": "missing-citation",
+      "judgment": "fail",
+      "reasonCodes": ["citation_resolution"],
+      "explanation": "invoice-missing does not exist in the supplied evidence."
+    },
+    {
+      "id": "contradictory-citation",
+      "judgment": "fail",
+      "reasonCodes": ["record_claims"],
+      "explanation": "The claim says invoice-002 is open; its cited record says paid."
+    },
+    {
+      "id": "missing-metadata",
+      "judgment": "insufficient_evidence",
+      "reasonCodes": ["source_freshness", "evidence_coverage", "result_truncation"],
+      "explanation": "No last successful commit, unknown coverage and unknown truncation leave the claim unverified."
+    }
+  ]
+}

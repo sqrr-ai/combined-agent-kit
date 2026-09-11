@@ -1,0 +1,773 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureSetId": "business-answer-verification-v1",
+  "questionContract": {
+    "accountId": "account-acme",
+    "requiredDatasetIds": ["paid-invoices"],
+    "metric": "paid_invoice_total",
+    "interval": {
+      "start": "2026-08-01T00:00:00Z",
+      "endExclusive": "2026-09-01T00:00:00Z",
+      "timezone": "UTC"
+    },
+    "currency": "USD",
+    "unit": "minor",
+    "asOf": "2026-09-10T12:00:00Z",
+    "maxSourceAgeSeconds": 86400,
+    "requireCompletePopulation": true
+  },
+  "cases": [
+    {
+      "id": "complete-answer",
+      "title": "The answer matches the supplied evidence",
+      "question": "For Acme, what was the complete paid-invoice total in USD for August 2026, using UTC dates and source data committed within the last 24 hours?",
+      "answer": "Acme paid USD 5,000 in August 2026. Both cited invoices are paid. The selected source committed two hours before this check, and the supplied result is complete.",
+      "evidence": {
+        "accountId": "account-acme",
+        "datasetIds": ["paid-invoices"],
+        "queryId": "example-query-001",
+        "outcome": "success",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "lastSuccessAt": "2026-09-10T10:00:00Z",
+        "coverage": "complete",
+        "truncated": false,
+        "rows": [
+          {
+            "id": "invoice-001",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-05T09:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          },
+          {
+            "id": "invoice-002",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-20T15:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          }
+        ]
+      },
+      "claim": {
+        "accountId": "account-acme",
+        "metric": "paid_invoice_total",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "currency": "USD",
+        "unit": "minor",
+        "value": 500000,
+        "population": "complete",
+        "evidenceIds": ["invoice-001", "invoice-002"],
+        "recordClaims": [
+          {
+            "evidenceId": "invoice-001",
+            "field": "status",
+            "value": "paid"
+          },
+          {
+            "evidenceId": "invoice-002",
+            "field": "status",
+            "value": "paid"
+          }
+        ]
+      }
+    },
+    {
+      "id": "wrong-account",
+      "title": "The number is right for the wrong account",
+      "question": "For Acme, what was the complete paid-invoice total in USD for August 2026, using UTC dates and source data committed within the last 24 hours?",
+      "answer": "Acme paid USD 5,000 in August 2026.",
+      "evidence": {
+        "accountId": "account-contoso",
+        "datasetIds": ["paid-invoices"],
+        "queryId": "example-query-001",
+        "outcome": "success",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "lastSuccessAt": "2026-09-10T10:00:00Z",
+        "coverage": "complete",
+        "truncated": false,
+        "rows": [
+          {
+            "id": "invoice-001",
+            "datasetId": "paid-invoices",
+            "accountId": "account-contoso",
+            "paidAt": "2026-08-05T09:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          },
+          {
+            "id": "invoice-002",
+            "datasetId": "paid-invoices",
+            "accountId": "account-contoso",
+            "paidAt": "2026-08-20T15:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          }
+        ]
+      },
+      "claim": {
+        "accountId": "account-acme",
+        "metric": "paid_invoice_total",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "currency": "USD",
+        "unit": "minor",
+        "value": 500000,
+        "population": "complete",
+        "evidenceIds": ["invoice-001", "invoice-002"],
+        "recordClaims": [
+          {
+            "evidenceId": "invoice-001",
+            "field": "status",
+            "value": "paid"
+          },
+          {
+            "evidenceId": "invoice-002",
+            "field": "status",
+            "value": "paid"
+          }
+        ]
+      }
+    },
+    {
+      "id": "missing-dataset",
+      "title": "The required dataset was not supplied",
+      "question": "For Acme, what was the complete paid-invoice total in USD for August 2026, using UTC dates and source data committed within the last 24 hours?",
+      "answer": "Acme paid USD 5,000 in August 2026.",
+      "evidence": {
+        "accountId": "account-acme",
+        "datasetIds": [],
+        "queryId": "example-query-001",
+        "outcome": "success",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "lastSuccessAt": "2026-09-10T10:00:00Z",
+        "coverage": "complete",
+        "truncated": false,
+        "rows": []
+      },
+      "claim": {
+        "accountId": "account-acme",
+        "metric": "paid_invoice_total",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "currency": "USD",
+        "unit": "minor",
+        "value": 500000,
+        "population": "complete",
+        "evidenceIds": [],
+        "recordClaims": []
+      }
+    },
+    {
+      "id": "wrong-window",
+      "title": "The answer uses a different interval and timezone",
+      "question": "For Acme, what was the complete paid-invoice total in USD for August 2026, using UTC dates and source data committed within the last 24 hours?",
+      "answer": "Acme paid USD 5,000 for the August 2 to September 2 reporting interval, in America/New_York.",
+      "evidence": {
+        "accountId": "account-acme",
+        "datasetIds": ["paid-invoices"],
+        "queryId": "example-query-001",
+        "outcome": "success",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "lastSuccessAt": "2026-09-10T10:00:00Z",
+        "coverage": "complete",
+        "truncated": false,
+        "rows": [
+          {
+            "id": "invoice-001",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-05T09:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          },
+          {
+            "id": "invoice-002",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-20T15:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          }
+        ]
+      },
+      "claim": {
+        "accountId": "account-acme",
+        "metric": "paid_invoice_total",
+        "interval": {
+          "start": "2026-08-02T00:00:00Z",
+          "endExclusive": "2026-09-02T00:00:00Z",
+          "timezone": "America/New_York"
+        },
+        "currency": "USD",
+        "unit": "minor",
+        "value": 500000,
+        "population": "complete",
+        "evidenceIds": ["invoice-001", "invoice-002"],
+        "recordClaims": [
+          {
+            "evidenceId": "invoice-001",
+            "field": "status",
+            "value": "paid"
+          },
+          {
+            "evidenceId": "invoice-002",
+            "field": "status",
+            "value": "paid"
+          }
+        ]
+      }
+    },
+    {
+      "id": "altered-number",
+      "title": "The answer changes the returned number",
+      "question": "For Acme, what was the complete paid-invoice total in USD for August 2026, using UTC dates and source data committed within the last 24 hours?",
+      "answer": "Acme paid USD 5,500 in August 2026.",
+      "evidence": {
+        "accountId": "account-acme",
+        "datasetIds": ["paid-invoices"],
+        "queryId": "example-query-001",
+        "outcome": "success",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "lastSuccessAt": "2026-09-10T10:00:00Z",
+        "coverage": "complete",
+        "truncated": false,
+        "rows": [
+          {
+            "id": "invoice-001",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-05T09:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          },
+          {
+            "id": "invoice-002",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-20T15:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          }
+        ]
+      },
+      "claim": {
+        "accountId": "account-acme",
+        "metric": "paid_invoice_total",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "currency": "USD",
+        "unit": "minor",
+        "value": 550000,
+        "population": "complete",
+        "evidenceIds": ["invoice-001", "invoice-002"],
+        "recordClaims": [
+          {
+            "evidenceId": "invoice-001",
+            "field": "status",
+            "value": "paid"
+          },
+          {
+            "evidenceId": "invoice-002",
+            "field": "status",
+            "value": "paid"
+          }
+        ]
+      }
+    },
+    {
+      "id": "wrong-currency-unit",
+      "title": "The same digits have a different currency and unit",
+      "question": "For Acme, what was the complete paid-invoice total in USD for August 2026, using UTC dates and source data committed within the last 24 hours?",
+      "answer": "Acme paid EUR 500,000 in August 2026.",
+      "evidence": {
+        "accountId": "account-acme",
+        "datasetIds": ["paid-invoices"],
+        "queryId": "example-query-001",
+        "outcome": "success",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "lastSuccessAt": "2026-09-10T10:00:00Z",
+        "coverage": "complete",
+        "truncated": false,
+        "rows": [
+          {
+            "id": "invoice-001",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-05T09:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          },
+          {
+            "id": "invoice-002",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-20T15:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          }
+        ]
+      },
+      "claim": {
+        "accountId": "account-acme",
+        "metric": "paid_invoice_total",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "currency": "EUR",
+        "unit": "major",
+        "value": 500000,
+        "population": "complete",
+        "evidenceIds": ["invoice-001", "invoice-002"],
+        "recordClaims": [
+          {
+            "evidenceId": "invoice-001",
+            "field": "status",
+            "value": "paid"
+          },
+          {
+            "evidenceId": "invoice-002",
+            "field": "status",
+            "value": "paid"
+          }
+        ]
+      }
+    },
+    {
+      "id": "stale-source",
+      "title": "A complete-looking answer uses a stale source",
+      "question": "For Acme, what was the complete paid-invoice total in USD for August 2026, using UTC dates and source data committed within the last 24 hours?",
+      "answer": "Acme paid USD 5,000 in August 2026. This is the complete answer for the requested freshness policy.",
+      "evidence": {
+        "accountId": "account-acme",
+        "datasetIds": ["paid-invoices"],
+        "queryId": "example-query-001",
+        "outcome": "success",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "lastSuccessAt": "2026-09-07T12:00:00Z",
+        "coverage": "complete",
+        "truncated": false,
+        "rows": [
+          {
+            "id": "invoice-001",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-05T09:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          },
+          {
+            "id": "invoice-002",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-20T15:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          }
+        ]
+      },
+      "claim": {
+        "accountId": "account-acme",
+        "metric": "paid_invoice_total",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "currency": "USD",
+        "unit": "minor",
+        "value": 500000,
+        "population": "complete",
+        "evidenceIds": ["invoice-001", "invoice-002"],
+        "recordClaims": [
+          {
+            "evidenceId": "invoice-001",
+            "field": "status",
+            "value": "paid"
+          },
+          {
+            "evidenceId": "invoice-002",
+            "field": "status",
+            "value": "paid"
+          }
+        ]
+      }
+    },
+    {
+      "id": "truncated-population",
+      "title": "A limited result becomes a population total",
+      "question": "For Acme, what was the complete paid-invoice total in USD for August 2026, using UTC dates and source data committed within the last 24 hours?",
+      "answer": "Acme paid USD 5,000 in August 2026. This is the complete total.",
+      "evidence": {
+        "accountId": "account-acme",
+        "datasetIds": ["paid-invoices"],
+        "queryId": "example-query-001",
+        "outcome": "success",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "lastSuccessAt": "2026-09-10T10:00:00Z",
+        "coverage": "complete",
+        "truncated": true,
+        "rows": [
+          {
+            "id": "invoice-001",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-05T09:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          },
+          {
+            "id": "invoice-002",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-20T15:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          }
+        ]
+      },
+      "claim": {
+        "accountId": "account-acme",
+        "metric": "paid_invoice_total",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "currency": "USD",
+        "unit": "minor",
+        "value": 500000,
+        "population": "complete",
+        "evidenceIds": ["invoice-001", "invoice-002"],
+        "recordClaims": [
+          {
+            "evidenceId": "invoice-001",
+            "field": "status",
+            "value": "paid"
+          },
+          {
+            "evidenceId": "invoice-002",
+            "field": "status",
+            "value": "paid"
+          }
+        ]
+      }
+    },
+    {
+      "id": "access-error-zero",
+      "title": "An access error becomes zero payments",
+      "question": "For Acme, what was the complete paid-invoice total in USD for August 2026, using UTC dates and source data committed within the last 24 hours?",
+      "answer": "Acme paid USD 0 in August 2026.",
+      "evidence": {
+        "accountId": "account-acme",
+        "datasetIds": ["paid-invoices"],
+        "queryId": "example-query-001",
+        "outcome": "access_denied",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "lastSuccessAt": "2026-09-10T10:00:00Z",
+        "coverage": "complete",
+        "truncated": false,
+        "rows": []
+      },
+      "claim": {
+        "accountId": "account-acme",
+        "metric": "paid_invoice_total",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "currency": "USD",
+        "unit": "minor",
+        "value": 0,
+        "population": "complete",
+        "evidenceIds": [],
+        "recordClaims": []
+      }
+    },
+    {
+      "id": "missing-citation",
+      "title": "A citation points to a missing record",
+      "question": "For Acme, what was the complete paid-invoice total in USD for August 2026, using UTC dates and source data committed within the last 24 hours?",
+      "answer": "Acme paid USD 5,000 in August 2026, supported by the listed invoice citations.",
+      "evidence": {
+        "accountId": "account-acme",
+        "datasetIds": ["paid-invoices"],
+        "queryId": "example-query-001",
+        "outcome": "success",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "lastSuccessAt": "2026-09-10T10:00:00Z",
+        "coverage": "complete",
+        "truncated": false,
+        "rows": [
+          {
+            "id": "invoice-001",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-05T09:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          },
+          {
+            "id": "invoice-002",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-20T15:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          }
+        ]
+      },
+      "claim": {
+        "accountId": "account-acme",
+        "metric": "paid_invoice_total",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "currency": "USD",
+        "unit": "minor",
+        "value": 500000,
+        "population": "complete",
+        "evidenceIds": ["invoice-001", "invoice-002", "invoice-missing"],
+        "recordClaims": [
+          {
+            "evidenceId": "invoice-001",
+            "field": "status",
+            "value": "paid"
+          },
+          {
+            "evidenceId": "invoice-002",
+            "field": "status",
+            "value": "paid"
+          }
+        ]
+      }
+    },
+    {
+      "id": "contradictory-citation",
+      "title": "A statement contradicts its cited record",
+      "question": "For Acme, what was the complete paid-invoice total in USD for August 2026, using UTC dates and source data committed within the last 24 hours?",
+      "answer": "Acme paid USD 5,000 in August 2026. Invoice 002 is still open.",
+      "evidence": {
+        "accountId": "account-acme",
+        "datasetIds": ["paid-invoices"],
+        "queryId": "example-query-001",
+        "outcome": "success",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "lastSuccessAt": "2026-09-10T10:00:00Z",
+        "coverage": "complete",
+        "truncated": false,
+        "rows": [
+          {
+            "id": "invoice-001",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-05T09:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          },
+          {
+            "id": "invoice-002",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-20T15:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          }
+        ]
+      },
+      "claim": {
+        "accountId": "account-acme",
+        "metric": "paid_invoice_total",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "currency": "USD",
+        "unit": "minor",
+        "value": 500000,
+        "population": "complete",
+        "evidenceIds": ["invoice-001", "invoice-002"],
+        "recordClaims": [
+          {
+            "evidenceId": "invoice-001",
+            "field": "status",
+            "value": "paid"
+          },
+          {
+            "evidenceId": "invoice-002",
+            "field": "status",
+            "value": "open"
+          }
+        ]
+      }
+    },
+    {
+      "id": "missing-metadata",
+      "title": "The supplied metadata cannot establish completeness",
+      "question": "For Acme, what was the complete paid-invoice total in USD for August 2026, using UTC dates and source data committed within the last 24 hours?",
+      "answer": "Acme paid USD 5,000 in August 2026. This is the complete, current answer.",
+      "evidence": {
+        "accountId": "account-acme",
+        "datasetIds": ["paid-invoices"],
+        "queryId": "example-query-001",
+        "outcome": "success",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "lastSuccessAt": null,
+        "coverage": "unknown",
+        "truncated": null,
+        "rows": [
+          {
+            "id": "invoice-001",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-05T09:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          },
+          {
+            "id": "invoice-002",
+            "datasetId": "paid-invoices",
+            "accountId": "account-acme",
+            "paidAt": "2026-08-20T15:00:00Z",
+            "status": "paid",
+            "currency": "USD",
+            "unit": "minor",
+            "value": 250000
+          }
+        ]
+      },
+      "claim": {
+        "accountId": "account-acme",
+        "metric": "paid_invoice_total",
+        "interval": {
+          "start": "2026-08-01T00:00:00Z",
+          "endExclusive": "2026-09-01T00:00:00Z",
+          "timezone": "UTC"
+        },
+        "currency": "USD",
+        "unit": "minor",
+        "value": 500000,
+        "population": "complete",
+        "evidenceIds": ["invoice-001", "invoice-002"],
+        "recordClaims": [
+          {
+            "evidenceId": "invoice-001",
+            "field": "status",
+            "value": "paid"
+          },
+          {
+            "evidenceId": "invoice-002",
+            "field": "status",
+            "value": "paid"
+          }
+        ]
+      }
+    }
+  ]
+}
