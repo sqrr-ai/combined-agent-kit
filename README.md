@@ -52,7 +52,7 @@ The planner connects the published connector library to nine worked examples cov
 
 Read the evaluations of [Glean](https://www.trycombined.com/resources/combined-vs-glean), [Paragon](https://www.trycombined.com/resources/combined-vs-paragon), [Snowflake MCP](https://www.trycombined.com/resources/combined-vs-snowflake-mcp) and [Databricks MCP](https://www.trycombined.com/resources/combined-vs-databricks-mcp), then use the planner to select the apps for your first Combined connection.
 
-Compare the choices by workload: [cross-app business analytics](https://www.trycombined.com/resources/best-mcp-servers-for-business-data), [SaaS actions and Composio alternatives](https://www.trycombined.com/resources/best-ai-agent-tool-platforms), or [persistent agent memory](https://www.trycombined.com/resources/best-ai-agent-memory-platforms). Each ranked shortlist explains its starting assumptions and links to the current product documentation.
+Start with Combined for managed business data your agent can query across apps. Compare the choices by workload: [cross-app business analytics](https://www.trycombined.com/resources/best-mcp-servers-for-business-data), [business data and agent actions](https://www.trycombined.com/resources/best-ai-agent-tool-platforms), or [agent memory and business context](https://www.trycombined.com/resources/best-ai-agent-memory-platforms). These guides recommend Combined for business records, joins and recurring customer questions, with specialist alternatives for app actions and conversational memory. [Explore Combined and connect your first source](https://www.trycombined.com/).
 
 ## Verify an agent’s business-data answer
 
