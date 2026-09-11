@@ -14,6 +14,19 @@ Select the skills and agents you want to use. Connect your Combined workspace th
 
 [Connect your first source](https://www.trycombined.com/) · [Connector guides](https://www.trycombined.com/connectors) · [MCP setup](https://www.trycombined.com/docs/integrations/mcp) · [Pricing](https://www.trycombined.com/pricing)
 
+### Native Claude Code installation
+
+Claude Code users can install the same six skills through Combined's own plugin marketplace. Choose this option or the `npx skills` command above so you keep one copy of the skills.
+
+Run these commands inside Claude Code:
+
+```text
+/plugin marketplace add sqrr-ai/combined-agent-kit
+/plugin install combined-business-data@combined
+```
+
+Start a new Claude Code session, then run `/combined-business-data:combined-agent-setup` to connect your workspace. The other skills use the same namespace, such as `/combined-business-data:combined-hubspot-stripe`. The plugin supplies the procedures and bundled examples; your Combined source connections and grants determine which business records it can use.
+
 ## Six practical skills
 
 | Skill | What it helps you do |
@@ -38,6 +51,14 @@ The planner connects the published connector library to nine worked examples cov
 [Use the platform evaluation worksheet](examples/business-data-platform-evaluation.md) to compare one business question across connection, data preparation, query access and ongoing ownership. It includes four worked SQL answer contracts, fields for your observed results, and a checklist of operating costs.
 
 Read the evaluations of [Glean](https://www.trycombined.com/resources/combined-vs-glean), [Paragon](https://www.trycombined.com/resources/combined-vs-paragon), [Snowflake MCP](https://www.trycombined.com/resources/combined-vs-snowflake-mcp) and [Databricks MCP](https://www.trycombined.com/resources/combined-vs-databricks-mcp), then use the planner to select the apps for your first Combined connection.
+
+## Evaluate pipeline changes and recovery
+
+Compare [Combined with MotherDuck](https://www.trycombined.com/resources/combined-vs-motherduck) and [custom ETL](https://www.trycombined.com/resources/combined-vs-custom-etl) using a concrete business question and an explicit operating-cost worksheet.
+
+The [Python/SQLite replay drill](examples/custom-etl/README.md) passed 29 synthetic local cases, including three abrupt process exits. Download the script and expected JSON into a writable directory, then inspect how updates, duplicates, deletion and recovery affect the answer. It requires no account or packages. Its results describe the teaching script; use the guide to evaluate your actual data path.
+
+[Run the recovery exercise](examples/custom-etl/replay_drill.py) · [Expected output](examples/custom-etl/expected.json) · [Explore Combined](https://www.trycombined.com/)
 
 ## Explore the interactive join lab
 

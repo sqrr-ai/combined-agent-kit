@@ -1,0 +1,21 @@
+{
+  "name": "combined-business-data",
+  "version": "0.1.0",
+  "description": "Six practical skills for connecting Combined to an agent, analyzing CRM and billing data, building customer context, and checking cross-app SQL with runnable examples.",
+  "author": {
+    "name": "Combined",
+    "url": "https://www.trycombined.com/"
+  },
+  "homepage": "https://www.trycombined.com/",
+  "repository": "https://github.com/sqrr-ai/combined-agent-kit",
+  "license": "MIT",
+  "keywords": [
+    "business-data",
+    "crm",
+    "billing",
+    "hubspot",
+    "stripe",
+    "sql",
+    "mcp"
+  ]
+}

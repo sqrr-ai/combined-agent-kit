@@ -1,0 +1,52 @@
+{
+  "synthetic": true,
+  "columns": ["case", "outcome", "scope", "checkpoint", "totals_minor", "live_records", "tombstones"],
+  "passed_cases": 29,
+  "rows": [
+    ["initial", "committed", "billing/production-us/invoice", 2, { "USD": 30000 }, 2, 0],
+    ["same-delivery-retry", "replayed", "billing/production-us/invoice", 2, { "USD": 30000 }, 2, 0],
+    ["duplicate-record", "committed", "billing/production-us/invoice", 3, { "USD": 30000 }, 2, 0],
+    ["newer-update", "committed", "billing/production-us/invoice", 4, { "USD": 35000 }, 2, 0],
+    ["tombstone", "committed", "billing/production-us/invoice", 5, { "USD": 15000 }, 1, 1],
+    ["late-business-date-update", "committed", "billing/production-us/invoice", 6, { "USD": 17500 }, 1, 1],
+    ["unseen-stale-revision", "committed", "billing/production-us/invoice", 7, { "USD": 17500 }, 1, 1],
+    ["stale-cannot-resurrect", "committed", "billing/production-us/invoice", 8, { "USD": 17500 }, 1, 1],
+    ["conflict-rolls-back-earlier-row", "rejected", "billing/production-us/invoice", 8, { "USD": 17500 }, 1, 1],
+    ["historical-revision-conflict", "rejected", "billing/production-us/invoice", 8, { "USD": 17500 }, 1, 1],
+    ["mid-batch-crash", "process-interrupted", "billing/production-us/invoice", 8, { "USD": 17500 }, 1, 1],
+    [
+      "checkpoint-before-commit-crash",
+      "process-interrupted",
+      "billing/production-us/invoice",
+      8,
+      { "USD": 17500 },
+      1,
+      1
+    ],
+    ["recover-interrupted-batch", "committed", "billing/production-us/invoice", 10, { "USD": 23000 }, 2, 1],
+    ["commit-before-ack-crash", "process-interrupted", "billing/production-us/invoice", 11, { "USD": 25000 }, 2, 1],
+    ["recover-lost-ack", "replayed", "billing/production-us/invoice", 11, { "USD": 25000 }, 2, 1],
+    ["separate-account-same-key", "committed", "billing/sandbox/invoice", 1, { "USD": 90000 }, 1, 0],
+    ["separate-entity-same-key", "committed", "billing/production-us/refund", 1, { "USD": 1200 }, 1, 0],
+    ["separate-source-same-key", "committed", "other-billing/production-us/invoice", 1, { "USD": 500 }, 1, 0],
+    ["currencies-stay-separate", "committed", "billing/production-us/invoice", 12, { "EUR": 5000, "USD": 25000 }, 3, 1],
+    ["wrong-account-record", "rejected", "billing/production-us/invoice", 12, { "EUR": 5000, "USD": 25000 }, 3, 1],
+    ["stale-checkpoint", "rejected", "billing/production-us/invoice", 12, { "EUR": 5000, "USD": 25000 }, 3, 1],
+    ["future-checkpoint", "rejected", "billing/production-us/invoice", 12, { "EUR": 5000, "USD": 25000 }, 3, 1],
+    ["missing-feed-position", "rejected", "billing/production-us/invoice", 12, { "EUR": 5000, "USD": 25000 }, 3, 1],
+    ["unordered-feed", "rejected", "billing/production-us/invoice", 12, { "EUR": 5000, "USD": 25000 }, 3, 1],
+    ["boolean-is-not-revision", "rejected", "billing/production-us/invoice", 12, { "EUR": 5000, "USD": 25000 }, 3, 1],
+    ["float-is-not-money", "rejected", "billing/production-us/invoice", 12, { "EUR": 5000, "USD": 25000 }, 3, 1],
+    ["invalid-currency-label", "rejected", "billing/production-us/invoice", 12, { "EUR": 5000, "USD": 25000 }, 3, 1],
+    ["changed-delivery-retry", "rejected", "billing/production-us/invoice", 12, { "EUR": 5000, "USD": 25000 }, 3, 1],
+    [
+      "old-delivery-retry-after-progress",
+      "replayed",
+      "billing/production-us/invoice",
+      12,
+      { "EUR": 5000, "USD": 25000 },
+      3,
+      1
+    ]
+  ]
+}

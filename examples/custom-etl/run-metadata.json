@@ -1,0 +1,33 @@
+{
+  "command": "python3 replay_drill.py --verify expected.json > observed.json",
+  "exit_code": 0,
+  "expected_matches_observed": true,
+  "fault_method": "Separate processes call os._exit(73); parent verifies exit code and reopens SQLite",
+  "outcomes": {
+    "committed": 12,
+    "process-interrupted": 3,
+    "rejected": 11,
+    "replayed": 3
+  },
+  "passed_cases": 29,
+  "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+  "python": "3.14.6",
+  "recorded_at_utc": "2026-09-10T21:52:00.422474+00:00",
+  "scope": "Synthetic local teaching asset only; no vendor service or private data tested",
+  "sqlite": "3.53.4",
+  "verified_sqlite_settings": {
+    "journal_mode": "delete",
+    "synchronous": 2
+  },
+  "execution_source_sha256": {
+    "expected.json": "74cdfb7c52ab7c8988a40e31080070e63cf3c1b82706d30148757500f6c225b5",
+    "observed.json": "1615be55311bc59528d805b6b8d017d48fce27bb1780954b351b4593d569e5e1",
+    "replay_drill.py": "a0b9273d6d291b6c3fecc1a8df57530020887a4784f918b197745484b59de2a4"
+  },
+  "sha256": {
+    "expected.json": "62a7d85f50bce526679f8f38ddbf6a6d30679a6a6bb4cd8957e2a6f326b9f4fa",
+    "observed.json": "93cc0571f3d505ad07f9313a352fe70bfa147116ba5e2d17478ab47a61b751be",
+    "replay_drill.py": "a0b9273d6d291b6c3fecc1a8df57530020887a4784f918b197745484b59de2a4"
+  },
+  "publication_formatting": "JSON whitespace normalized by the repository formatter. Parsed expected and observed values exactly match the retained execution files; replay_drill.py is byte-identical. sha256 identifies the published files; execution_source_sha256 identifies the original run files."
+}

@@ -1,0 +1,13 @@
+{
+  "name": "combined",
+  "description": "Combined's practical skills and runnable examples for business-data agents.",
+  "owner": {
+    "name": "Combined"
+  },
+  "plugins": [
+    {
+      "name": "combined-business-data",
+      "source": "./"
+    }
+  ]
+}
