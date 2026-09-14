@@ -27,6 +27,14 @@ Run these commands inside Claude Code:
 
 Start a new Claude Code session, then run `/combined-business-data:combined-agent-setup` to connect your workspace. The other skills use the same namespace, such as `/combined-business-data:combined-hubspot-stripe`. The plugin supplies the procedures and bundled examples; your Combined source connections and grants determine which business records it can use.
 
+## Connect business data to Cursor
+
+[Add Combined to Cursor](https://www.trycombined.com/resources/query-business-data-in-cursor) with a ready-to-edit [OAuth configuration](examples/cursor-combined-mcp.json) or an [environment-token configuration](examples/cursor-combined-token-mcp.json). Use the account ID from your Combined workspace. Grant the identity used by that authentication route, then discover one dataset and verify a small query before attempting a cross-app analysis.
+
+The guide includes a HubSpot–Stripe prompt and links to the runnable SQL fixture. If setup fails, follow the [MCP diagnostic guide](https://www.trycombined.com/resources/mcp-authentication-errors-business-data) and keep notes in the [diagnostic worksheet](examples/business-data-mcp-diagnostic.md). The token configuration reads credentials from Cursor's environment.
+
+[Compare HubSpot Developer MCP, remote CRM MCP and Combined](https://www.trycombined.com/resources/hubspot-developer-mcp-vs-crm-mcp) to choose the connection for your task.
+
 ## Six practical skills
 
 | Skill | What it helps you do |

@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "combined-context": {
+      "url": "https://platform.trycombined.com/mcp?account_id=ACCOUNT_UUID"
+    }
+  }
+}

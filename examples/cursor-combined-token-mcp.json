@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "combined-context": {
+      "url": "https://platform.trycombined.com/mcp?account_id=${env:COMBINED_ACCOUNT_ID}",
+      "headers": {
+        "Authorization": "Bearer ${env:COMBINED_TOKEN}"
+      }
+    }
+  }
+}
