@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "checks": [
+    "tool_allowlist",
+    "graph_tool_loop",
+    "structured_result_retained",
+    "tool_error_status",
+    "missing_tool_rejected"
+  ],
+  "missing_tool_rejected": true,
+  "observed_query_result": {
+    "tool_call_id": "synthetic-query-1",
+    "status": "success",
+    "receipt_id": "00000000-0000-4000-8000-000000000001",
+    "structured_content": {
+      "data": {
+        "receiptId": "00000000-0000-4000-8000-000000000001",
+        "columns": [
+          {
+            "name": "company",
+            "type": "VARCHAR"
+          },
+          {
+            "name": "currency",
+            "type": "VARCHAR"
+          },
+          {
+            "name": "paid",
+            "type": "INTEGER"
+          }
+        ],
+        "rows": [
+          {
+            "company": "Atlas",
+            "currency": "USD",
+            "paid": 5000
+          }
+        ],
+        "rowCount": 1,
+        "truncated": false,
+        "durationMs": 1,
+        "estimatedInputBytes": null,
+        "grantVersion": 1
+      }
+    }
+  },
+  "scope": "Synthetic in-memory MCP and scripted model; no live Combined or LLM call."
+}

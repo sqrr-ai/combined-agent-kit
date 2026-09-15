@@ -35,6 +35,16 @@ The guide includes a HubSpot–Stripe prompt and links to the runnable SQL fixtu
 
 [Compare HubSpot Developer MCP, remote CRM MCP and Combined](https://www.trycombined.com/resources/hubspot-developer-mcp-vs-crm-mcp) to choose the connection for your task.
 
+## Choose a business-data client
+
+Use Combined with the client or framework your team already runs:
+
+- **[Claude Desktop customer brief](https://www.trycombined.com/resources/query-business-data-in-claude-desktop):** add the hosted MCP connector, grant the signed-in identity and use the [customer-brief assignment](examples/claude-desktop-customer-brief.txt) across CRM, billing and support.
+- **[CrewAI analyst task](https://www.trycombined.com/resources/crewai-business-data-mcp):** download the [Python bundle](examples/frameworks/crewai-example.zip) with a runtime credential, five-tool allowlist and local discovery check. This adapter returns the first text block of a tool result.
+- **[LangGraph query workflow](https://www.trycombined.com/resources/langgraph-business-data-mcp):** download the [graph bundle](examples/frameworks/langgraph-example.zip) to retain structured query results and their receipt IDs alongside the model's answer. The full audit receipt is retrieved separately.
+
+The two framework checks passed with synthetic local MCP tools and no hosted model or customer account. Use separate Python environments; the pinned libraries have different MCP requirements. The guides explain how to configure your own model, synced sources and data grants. [Example instructions and validation scope](examples/frameworks/README.md).
+
 ## Six practical skills
 
 | Skill | What it helps you do |

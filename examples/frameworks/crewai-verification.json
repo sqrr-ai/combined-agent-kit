@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "checks": [
+    "crew_constructed",
+    "account_url",
+    "bearer_header",
+    "local_mcp_discovery",
+    "tool_allowlist",
+    "text_result_observed"
+  ],
+  "observed_text": "Synthetic Atlas paid amount: USD 5000",
+  "structured_content_returned_by_native_client": false,
+  "scope": "Synthetic local stdio MCP and configuration; no live HTTP, Combined or LLM call."
+}
