@@ -1,0 +1,26 @@
+{
+  "synthetic": true,
+  "decisionAt": "2026-09-15T12:00:00Z",
+  "expectedSummary": { "required": 3, "withinPolicy": 1, "stale": 1, "unknown": 1, "metadataMissing": 0 },
+  "expectedRows": [
+    {
+      "datasetId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "status": "stale",
+      "reason": "threshold_exceeded",
+      "ageSeconds": 108000
+    },
+    {
+      "datasetId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "status": "within_policy",
+      "reason": "within_threshold",
+      "ageSeconds": 3600
+    },
+    {
+      "datasetId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "status": "unknown",
+      "reason": "no_successful_commit",
+      "ageSeconds": null
+    }
+  ],
+  "note": "Expected teaching results specified before the checker. These are not observed production results. Source health and upstream coverage are separate from timestamp age."
+}

@@ -45,6 +45,12 @@ Use Combined with the client or framework your team already runs:
 
 The two framework checks passed with synthetic local MCP tools and no hosted model or customer account. Use separate Python environments; the pinned libraries have different MCP requirements. The guides explain how to configure your own model, synced sources and data grants. [Example instructions and validation scope](examples/frameworks/README.md).
 
+## Check source freshness before an answer
+
+[Open the free business-data freshness checker](https://www.trycombined.com/resources/data-freshness-for-ai-agents#freshness-checker) to compare each required dataset with its own age limit. Paste Combined freshness metadata or enter timestamps, then download your policy and report. The tool runs in the browser with no signup or live connection.
+
+The [synthetic example](examples/freshness-checker/README.md) includes source metadata, a per-dataset policy and expected results. It demonstrates a recent source sync with a stale dataset, a fresh invoice dataset and a source with no reported commit. A timestamp pass does not establish source identity or complete coverage.
+
 ## Six practical skills
 
 | Skill | What it helps you do |
