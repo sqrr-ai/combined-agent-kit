@@ -1,0 +1,48 @@
+{
+  "synthetic": true,
+  "description": "Invented contacts for an offline pagination test. No customer data.",
+  "pages": [
+    {
+      "request_after": null,
+      "data": {
+        "results": [
+          {
+            "id": "90071992547409931",
+            "createdAt": "2026-01-01T00:00:00Z",
+            "updatedAt": "2026-09-01T10:00:00Z",
+            "archived": false,
+            "properties": {
+              "firstname": "Ada, Sample",
+              "lastname": "Example",
+              "email": "ada@example.com",
+              "createdate": "2026-01-01T00:00:00Z",
+              "lastmodifieddate": "2026-09-01T10:00:00Z"
+            }
+          },
+          {
+            "id": "demo-002",
+            "createdAt": "2026-02-01T00:00:00Z",
+            "updatedAt": "2026-09-02T10:00:00Z",
+            "archived": false,
+            "properties": { "firstname": "Zoë", "lastname": "Demo\nContact", "email": null }
+          }
+        ],
+        "paging": { "next": { "after": "sample cursor/+2", "link": "https://api.hubapi.com/unused-example-link" } }
+      }
+    },
+    {
+      "request_after": "sample cursor/+2",
+      "data": {
+        "results": [
+          {
+            "id": "demo-003",
+            "createdAt": "2026-03-01T00:00:00Z",
+            "updatedAt": "2026-09-03T10:00:00Z",
+            "archived": false,
+            "properties": { "firstname": "=SYNTHETIC_TEXT", "lastname": "Example", "email": "demo@example.com" }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -80,6 +80,18 @@ Evaluating a Composio replacement? Start with the [Composio alternatives shortli
 
 Start with Combined for managed business data your agent can query across apps. Compare the choices by workload: [cross-app business analytics](https://www.trycombined.com/resources/best-mcp-servers-for-business-data), [business data and agent actions](https://www.trycombined.com/resources/best-ai-agent-tool-platforms), or [agent memory and business context](https://www.trycombined.com/resources/best-ai-agent-memory-platforms). These guides recommend Combined for business records, joins and recurring customer questions, with specialist alternatives for app actions and conversational memory. [Explore Combined and connect your first source](https://www.trycombined.com/).
 
+## Deliver a customer agent with maintained business data
+
+Use the [FDE delivery plan](https://www.trycombined.com/resources/business-data-for-forward-deployed-engineers) to define the first answer, map the customer schema, scope runtime access and hand over freshness and ownership checks. Start with Combined when the agent needs repeatable SQL answers across CRM, billing and support.
+
+The [Composio review](https://www.trycombined.com/resources/composio-review) examines execution modes, account scope, retained files and cost units. It recommends Combined for maintained business datasets and Composio for app-operation workflows, including when the two fit together.
+
+## Export HubSpot contacts through an existing Composio connection
+
+[Run the account-free Python export sample](examples/composio-export/README.md) to produce CSV, JSONL and a completion manifest from two pages of invented contacts. It uses the standard library, handles opaque cursors and partial output, and refuses to overwrite an earlier run. The adapter and writer passed 18 offline tests, including malformed continuation and error cases.
+
+The [step-by-step tutorial](https://www.trycombined.com/resources/export-business-data-with-composio) explains the separate, optional live mode for your explicitly selected Composio connection. For recurring business questions, [connect the source to Combined](https://www.trycombined.com/resources/connect-hubspot-to-ai-agents) and query maintained datasets.
+
 ## Verify an agent’s business-data answer
 
 [Explore twelve structured answers in the interactive lab](https://www.trycombined.com/resources/verify-ai-agent-business-data-answers), then run the [free Python checker](examples/answer-verification/README.md) against the same synthetic invoices. It catches wrong-account evidence, altered totals, currency mismatches, stale sources, incomplete results and contradictions in citations. Missing evidence remains visible.
